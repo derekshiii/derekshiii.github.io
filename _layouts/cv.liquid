@@ -27,8 +27,16 @@ layout: default
           target="_blank"
           rel="noopener noreferrer"
           class="float-right"
+          aria-label="{% if page.cv_pdf_label %}{{ page.cv_pdf_label }}{% else %}CV PDF{% endif %}"
         >
           <i class="fa-solid fa-file-pdf"></i>
+          <span class="d-none d-sm-inline">
+            {% if page.cv_pdf_label %}
+              {{ page.cv_pdf_label }}
+            {% else %}
+              PDF
+            {% endif %}
+          </span>
         </a>
       {% endif %}
     </h1>

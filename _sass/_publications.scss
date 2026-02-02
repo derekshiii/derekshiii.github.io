@@ -71,6 +71,24 @@
         font-weight: bolder;
       }
 
+      .pub-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        align-items: center;
+      }
+
+      .pub-tag {
+        display: inline-block;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        line-height: 1.25;
+        background-color: rgba(127, 127, 127, 0.12);
+        border: 1px solid rgba(127, 127, 127, 0.22);
+        color: var(--global-text-color);
+      }
+
       .author {
         a {
           border-bottom: 1px dashed var(--global-theme-color);

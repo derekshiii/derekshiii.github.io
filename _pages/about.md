@@ -2,16 +2,15 @@
 layout: about
 title: About
 permalink: /
-subtitle: Master's Student at <a href='http://www.neu.edu.cn/'>Northeastern University</a>, College of Medicine and Biological Information Engineering
+subtitle: Biomedical Engineering (M.S.) @ <a href='http://www.neu.edu.cn/'>Northeastern University</a>
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>College of Medicine and Biological Information Engineering</p>
-    <p>Northeastern University</p>
-    <p>Shenyang, China</p>
+    # <p>Biomedical Engineering</p>
+    # <p>Northeastern University</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -27,6 +26,9 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am a Master's student at the College of Medicine and Biological Information Engineering, [Northeastern University](http://www.neu.edu.cn/), China. My research interests focus on **Medical Image Analysis**, **Source-Free Unsupervised Domain Adaptation**, **Medical Vision Foundation Models**, and **Multimodal Medical Image Analysis**.
+Hi! I’m a Master’s student in **Biomedical Engineering** at the College of Medicine and Biological Information Engineering, [Northeastern University](http://www.neu.edu.cn/), China.
 
-I am passionate about developing robust and generalizable methods for cross-modality medical image segmentation, enabling models to adapt to new domains without requiring access to source data. My work also explores the intersection of foundation models and medical imaging, aiming to build universal representations that can transfer across diverse clinical scenarios. Additionally, I am interested in multimodal learning approaches that integrate information from different imaging modalities (such as CT, MRI, and X-ray) to improve diagnostic accuracy and clinical decision support.
+Before that, I received my B.Eng. in **Measurement and Control Technology and Instruments** from [Guilin University of Electronic Technology](https://www.guet.edu.cn/)
+
+My current research focuses on **medical image analysis**, especially **source-free unsupervised domain adaptation** and **cross-modality** learning. Recently, I’m also exploring **foundation models** for medical vision.
+

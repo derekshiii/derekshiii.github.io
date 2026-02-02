@@ -94,12 +94,12 @@ cv:
 
     Skills:
       - name: Research Areas
-        level: Master
+        #level: Master
         icon: fa-solid fa-brain
         keywords: "Medical Image Analysis, Source-Free Domain Adaptation, Medical Vision Foundation Models, Multimodal Learning"
 
       - name: Programming
-        level: Master
+        #level: Master
         icon: fa-solid fa-code
         keywords: "Python, PyTorch, Deep Learning, Computer Vision"
 
@@ -108,7 +108,7 @@ cv:
         summary: "Native speaker"
 
       - name: English
-        summary: "Proficient"
+        summary: "IELTS: 7, CET-6: 511"
 
     Interests:
       - name: Research
