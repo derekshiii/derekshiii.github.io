@@ -43,6 +43,15 @@ cv:
           - Graduated with Bachelor of Engineering degree
 
     Experience:
+      - company: Huawei, 车BU (Automotive Business Unit), Autonomous Driving Solutions Product Line
+        position: AI Multimodal Engineer Intern
+        location: Shanghai, China  # TODO: update actual location
+        start_date: 2025  # TODO: update actual start date
+        end_date: Present  # TODO: update actual end date
+        summary: Working on AI multimodal solutions for autonomous driving.
+        highlights:
+          - TODO: add specific project/work highlights
+
       - company: College of Medicine and Biological Information Engineering, Northeastern University
         position: Graduate Research Assistant
         location: Shenyang, China
@@ -69,6 +78,16 @@ cv:
         summary: Awarded for the project SFLocNet Source-Free Anatomical Landmark Localization Framework
 
     Publications:
+      - title: "Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation"
+        authors:
+          - Yulong Shi
+          - Lin Qi
+          # TODO: add all co-authors
+        publisher: The 34th ACM International Conference on Multimedia (ACM MM)
+        releaseDate: 2026
+        url: # TODO: add arXiv/DOI link
+        summary: A multi-agent collaborative tree search framework for source-free unsupervised domain adaptation.
+
       - title: "HEAL: Learning-Free Source Free Unsupervised Domain Adaptation for Cross-Modality Medical Image Segmentation"
         authors:
           - Yulong Shi
