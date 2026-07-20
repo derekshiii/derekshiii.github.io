@@ -1,56 +1,17 @@
-<!doctype html>
-<html lang="{{ site.lang }}">
-  <!-- Head -->
-  <head>
-    {% if page.redirect %}
-      {% if page.redirect == true %}
-        {% assign redirect = site.baseurl | append: '/' %}
-      {% elsif page.redirect contains '://' %}
-        {% assign redirect = page.redirect %}
-      {% else %}
-        {% assign redirect = page.redirect | relative_url %}
-      {% endif %}
-      <meta http-equiv="refresh" content="3; url={{ redirect }}">
-    {% endif %}
-    {% include head.liquid %}
-  </head>
-
-  <!-- Body -->
-  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
-    <!-- Header -->
-    {% include header.liquid %}
-
-    <!-- Content -->
-    <div class="container mt-5" role="main">
-      {% if page.toc and page.toc.sidebar %}
-        {% if page.toc.sidebar == 'right' %}
-          <div class="row">
-            <!-- main content area -->
-            <div class="col-sm-9">{{ content }}</div>
-            <!-- sidebar, which will move to the top on a small screen -->
-            <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
-            </div>
-          </div>
-        {% else %}
-          <div class="row">
-            <!-- sidebar, which will move to the top on a small screen -->
-            <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
-            </div>
-            <!-- main content area -->
-            <div class="col-sm-9">{{ content }}</div>
-          </div>
-        {% endif %}
-      {% else %}
-        {{ content }}
-      {% endif %}
-    </div>
-
-    <!-- Footer -->
-    {% include footer.liquid %}
-
-    <!-- JavaScripts -->
-    {% include scripts.liquid %}
-  </body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="{{ site.keywords }}" />
+  <meta name="description" content="{{ site.description }}" />
+  <link rel="shortcut icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/jemdoc.css' | relative_url }}" type="text/css" />
+  <title>{{ site.first_name }} {{ site.last_name }}</title>
+</head>
+<body>
+<div id="layout-content" style="margin-top:25px">
+  {{ content }}
+</div>
+</body>
 </html>
