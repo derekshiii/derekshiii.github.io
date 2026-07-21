@@ -140,9 +140,30 @@ p + ul, p + ol {
   margin-top: -0.5em;
 }
 
-/* Images */
 img {
   border: none;
+}
+
+/* BibTeX details toggle */
+details {
+  display: inline;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+details pre {
+  display: block;
+  border-left: 3px solid #ddd;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 0.82em;
+  line-height: 1.4;
+}
+
+details pre::selection {
+  background: #b3d4fc;
 }
 
 /* Footer */

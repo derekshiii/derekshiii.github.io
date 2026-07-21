@@ -62,31 +62,86 @@ permalink: /
   <li>
     Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation<br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
-    <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
-    <span style="color:red;"><b>CCF-A, CORE A*</b></span>
+    <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026. <span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{shi2026search2adapt,
+  title={Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation},
+  author={Shi, Yulong and Zhang, Wenwen and Li, Ziyi and Qi, Lin},
+  booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
+  year={2026}
+}</pre>
+    </details>
   </li>
 
   <li>
     <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_Tell2Adapt_A_Unified_Framework_for_Source_Free_Unsupervised_Domain_Adaptation_CVPR_2026_paper.pdf">Tell2Adapt: A Unified Framework for Source Free Unsupervised Domain Adaptation via Vision Foundation Model</a><br />
     <b>Yulong Shi</b>, Shijie Li, Ziyi Li, Lin Qi.<br />
-    <em>IEEE Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), 2026.<br />
-    <span style="color:red;"><b>CCF-A, CORE A*</b></span>
+    <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2026. <span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@InProceedings{Shi_2026_CVPR,
+    author    = {Shi, Yulong and Li, Shijie and Li, Ziyi and Qi, Lin},
+    title     = {Tell2Adapt: A Unified Framework for Source Free Unsupervised Domain Adaptation via Vision Foundation Model},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2026},
+    pages     = {6941-6950}
+}</pre>
+    </details>
   </li>
 
   <li>
     <a href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_943/paper.pdf">HEAL: Learning-Free Source Free Unsupervised Domain Adaptation for Cross-Modality Medical Image Segmentation</a><br />
     <strong>Yulong Shi</strong>, Jiapeng Li, Lin Qi.<br />
-    <em>The 36th British Machine Vision Conference</em> (<b>BMVC</b>), 2025.<br />
-    <span style="color:red;"><b>CCF-C, CORE A</b></span>
+    <em>The 36th British Machine Vision Conference</em> (<b>BMVC</b>), 2025. <span style="color:red;"><b>CCF-C, CORE A</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@misc{shi2025heallearningfreesourcefree,
+      title={HEAL: Learning-Free Source Free Unsupervised Domain Adaptation for Cross-Modality Medical Image Segmentation},
+      author={Yulong Shi and Jiapeng Li and Lin Qi},
+      year={2025},
+      eprint={2511.17958},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.17958},
+}</pre>
+    </details>
   </li>
 
   <li>
     <a href="https://www.sciencedirect.com/science/article/abs/pii/S0169260725004341">A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation</a><br />
-    Jingyi Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian. (<sup>*</sup>equal contribution)<br />
-    <em>Computer Methods and Programs in Biomedicine</em> (<b>CMPB</b>), Vol. 271, pp. 109017, 2025.<br />
-    <span style="color:red;"><b>IF: 4.8, JCR Q1</b></span>
+    Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian. (<sup>*</sup>equal contribution)<br />
+    <em>Computer Methods and Programs in Biomedicine</em>, 2025. <span style="color:red;"><b>IF: 4.8, JCR Q1</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@article{zhou2025a3,
+  title={A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation},
+  author={Zhou, Jie and Shi, Yulong and Qi, Lin and Jiang, Xue and Qi, Shouliang and Qian, Wei},
+  journal={Computer Methods and Programs in Biomedicine},
+  pages={109017},
+  year={2025},
+  publisher={Elsevier}
+}</pre>
+    </details>
   </li>
 
+</ul>
+
+<h2>Projects</h2>
+<ul>
+  <li>
+    <a href="{{ '/projects/search2adapt/' | relative_url }}">Search2Adapt</a> — Multi-Agent Collaborative Tree Search for SFUDA
+  </li>
+  <li>
+    <a href="{{ '/projects/tell2adapt/' | relative_url }}">Tell2Adapt</a> — Unified SFUDA via Vision Foundation Model
+  </li>
+  <li>
+    <a href="{{ '/projects/heal/' | relative_url }}">HEAL</a> — Learning-Free SFUDA for Cross-Modality Medical Image Segmentation
+  </li>
+  <li>
+    <a href="{{ '/projects/a3dualud/' | relative_url }}">A3-DualUD</a> — Anatomical Anchor Alignment and Dual-path Uncertainty Denoising
+  </li>
 </ul>
 
 <h2>Experience</h2>
