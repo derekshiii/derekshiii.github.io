@@ -60,22 +60,6 @@ permalink: /
 <ul>
 
   <li>
-    AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection<br />
-    Ziyi Li, Jiarui Li, <strong>Yulong Shi</strong>, Xue Jiang, Shouliang Qi, Ting Liu<sup>*</sup>, Lin Qi<sup>*</sup>, Wei Qian.<br />
-    <em>29th International Conference on Medical Image Computing and Computer Assisted Intervention</em> (<b>MICCAI</b>), 2026.<br />
-    <div style="margin-top:2px;"><span style="color:red;"><b>CCF-B</b></span> &nbsp;
-    <details style="display:inline; cursor:pointer; color:#888;">
-      <summary>Bib</summary>
-      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{li2026autoland,
-  title={AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection},
-  author={Li, Ziyi and Li, Jiarui and Shi, Yulong and Jiang, Xue and Qi, Shouliang and Liu, Ting and Qi, Lin and Qian, Wei},
-  booktitle={Proceedings of the 29th International Conference on Medical Image Computing and Computer Assisted Intervention},
-  year={2026}
-}</pre>
-    </details></div>
-  </li>
-
-  <li>
     Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation<br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
     <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
@@ -86,6 +70,22 @@ permalink: /
   title={Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation},
   author={Shi, Yulong and Zhang, Wenwen and Li, Ziyi and Qi, Lin},
   booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
+  year={2026}
+}</pre>
+    </details></div>
+  </li>
+
+  <li>
+    AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection<br />
+    Ziyi Li, Jiarui Li, <strong>Yulong Shi</strong>, Xue Jiang, Shouliang Qi, Ting Liu, Lin Qi, Wei Qian.<br />
+    <em>29th International Conference on Medical Image Computing and Computer Assisted Intervention</em> (<b>MICCAI</b>), 2026.<br />
+    <div style="margin-top:2px;"><span style="color:red;"><b>CCF-B, CORE A</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{li2026autoland,
+  title={AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection},
+  author={Li, Ziyi and Li, Jiarui and Shi, Yulong and Jiang, Xue and Qi, Shouliang and Liu, Ting and Qi, Lin and Qian, Wei},
+  booktitle={Proceedings of the 29th International Conference on Medical Image Computing and Computer Assisted Intervention},
   year={2026}
 }</pre>
     </details></div>
@@ -154,9 +154,11 @@ permalink: /
   <li>
     <div style="float:left; text-align:left"><a href="https://www.huawei.com/">Huawei</a>, Intelligent Automotive Solution BU, Autonomous Driving Product Line</div>
     <div style="float:right; text-align:right">2026 – Present</div><br />
-    AI Multimodal Engineer Intern<br />
-    Beijing, China<br />
-    Working on AI multimodal solutions for autonomous driving.
+    <div style="display:flex; justify-content:space-between;">
+      <span>AI Multimodal Engineer Intern</span>
+      <span>Beijing, China</span>
+    </div>
+    Working on reinforcement learning for optimizing world action models in autonomous driving and embodied intelligence.
   </li>
 </ul>
 
