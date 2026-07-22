@@ -60,6 +60,22 @@ permalink: /
 <ul>
 
   <li>
+    AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection<br />
+    Ziyi Li, Jiarui Li, <strong>Yulong Shi</strong>, Xue Jiang, Shouliang Qi, Ting Liu<sup>*</sup>, Lin Qi<sup>*</sup>, Wei Qian.<br />
+    <em>29th International Conference on Medical Image Computing and Computer Assisted Intervention</em> (<b>MICCAI</b>), 2026.<br />
+    <div style="margin-top:2px;"><span style="color:red;"><b>CCF-B</b></span> &nbsp;
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{li2026autoland,
+  title={AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection},
+  author={Li, Ziyi and Li, Jiarui and Shi, Yulong and Jiang, Xue and Qi, Shouliang and Liu, Ting and Qi, Lin and Qian, Wei},
+  booktitle={Proceedings of the 29th International Conference on Medical Image Computing and Computer Assisted Intervention},
+  year={2026}
+}</pre>
+    </details></div>
+  </li>
+
+  <li>
     Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation<br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
     <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
@@ -78,7 +94,7 @@ permalink: /
   <li>
     <a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_Tell2Adapt_A_Unified_Framework_for_Source_Free_Unsupervised_Domain_Adaptation_CVPR_2026_paper.pdf">Tell2Adapt: A Unified Framework for Source Free Unsupervised Domain Adaptation via Vision Foundation Model</a><br />
     <b>Yulong Shi</b>, Shijie Li, Ziyi Li, Lin Qi.<br />
-    <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (CVPR), June 2026.<br />
+    <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), June 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>

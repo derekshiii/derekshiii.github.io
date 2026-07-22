@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation</title>
+  <meta name="description" content="Search2Adapt reformulates SFUDA from static pseudo-label generation into a dynamic strategy search problem via multi-agent collaboration.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="highlight-title">Search2Adapt</span>: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation
+            </h1>
+
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://derekshiii.github.io/" target="_blank"><strong>Yulong Shi</strong></a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Wenwen Zhang<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Ziyi Li<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Lin Qi<sup>1</sup>
+              </span>
+            </div>
+
+            <!-- Affiliations -->
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>Northeastern University, Shenyang, China</span>
+            </div>
+
+            <!-- Links -->
+            <div class="publication-links" style="margin-top: 1.2rem;">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/" target="_blank" class="button is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/derekshiii/Search2Adapt" target="_blank" class="button is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 section-title">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Source-Free Unsupervised Domain Adaptation (SFUDA) aims to adapt a pre-trained source model to unlabeled target domains without accessing source data. Traditional SFUDA methods rely on static pseudo-label generation, which often leads to suboptimal adaptation due to error accumulation and lack of feedback mechanisms. We present <b>Search2Adapt</b>, a novel multi-agent collaborative framework that reformulates SFUDA as a dynamic strategy search problem. Our approach introduces <b>Collaborative Tree Search (CoTS)</b>, a plan-level search algorithm that enables efficient exploration of pseudo-label refinement strategies through multi-agent collaboration. The framework employs a closed-loop decision process where a <b>Perceptor</b> analyzes domain characteristics, a <b>Strategist</b> proposes adaptation plans, and an <b>Evaluator</b> provides multi-dimensional feedback without ground-truth labels. A <b>Dynamic Prior Memory</b> accumulates successful strategies across samples for accelerated adaptation. Extensive experiments on medical image segmentation benchmarks demonstrate that Search2Adapt achieves state-of-the-art performance, surpassing existing methods by significant margins while maintaining computational efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Method</h2>
+
+      <!-- Highlight Cards -->
+      <div class="columns is-centered highlight-cards">
+        <div class="column is-one-third">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-sync-alt"></i></div>
+              <p class="title is-5">Closed-Loop Multi-Agent Framework</p>
+              <p class="content is-size-6">
+                Transforms traditional open-loop SFUDA pipelines into feedback-driven decision processes through collaboration between Perceptor, Strategist, and Evaluator.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-sitemap"></i></div>
+              <p class="title is-5">Plan-Level Tree Search (CoTS)</p>
+              <p class="content is-size-6">
+                Operates on complete tool-chain plans rather than individual actions, significantly reducing computational overhead while exploring diverse adaptation strategies.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-brain"></i></div>
+              <p class="title is-5">Anatomy-Aware Reward</p>
+              <p class="content is-size-6">
+                Multi-dimensional scoring mechanism that evaluates pseudo-label quality without ground-truth labels, considering anatomical plausibility, morphological consistency, and boundary precision.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Figure -->
+      <div class="columns is-centered" style="margin-top: 1.5rem;">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure1_WholeFramework.png" alt="Search2Adapt Framework">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Overview of Search2Adapt.</b> The framework employs a closed-loop multi-agent collaboration where Perceptor analyzes domain characteristics, Strategist proposes adaptation plans, and Evaluator provides feedback. CoTS explores the strategy space through tree search, guided by an anatomy-aware reward mechanism.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Illustration -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure3_Detail_Illustration.png" alt="CoTS Detail">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Collaborative Tree Search (CoTS).</b> The two-phase search process: Phase 1 uses LLM-based plan evaluation without execution, and Phase 2 verifies top-K plans through actual execution. The diversity-augmented CAVF formula balances exploitation, exploration, and strategy diversity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section" id="features">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Key Features</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <h3 class="title is-4">Diversity-Augmented CAVF</h3>
+            <p>
+              Our <b>Collaborative Action Value Function (CAVF)</b> extends UCT with a diversity bonus to prevent premature convergence:
+            </p>
+            <div class="equation-box">
+              <code>CAVF(s<sub>i</sub>) = V(s<sub>i</sub>) + w·√(ln N<sub>parent</sub>/N<sub>i</sub>) + λ/√(count(tool<sub>sig</sub><sub>i</sub>))</code>
+            </div>
+            <p style="margin-top: 0.5rem;">
+              <span class="tag is-light">Exploitation</span>
+              <span class="tag is-light">Exploration</span>
+              <span class="tag is-light">Diversity Bonus</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 1.5rem;">
+        <div class="column is-8">
+          <div class="content">
+            <h3 class="title is-4">Dynamic Prior Memory</h3>
+            <p>
+              Five-layer memory structure enables cross-sample knowledge transfer:
+            </p>
+            <ul>
+              <li><b>Domain Profile</b> — Perceptor's analysis of target domain characteristics</li>
+              <li><b>Adaptation Plans</b> — Strategist's candidate plans with success history</li>
+              <li><b>Trajectories</b> — Successful tool chains for similar domains</li>
+              <li><b>Plan Dialogues</b> — CoTS collaboration records for learning</li>
+              <li><b>Evaluation Records</b> — Historical scoring for strategy refinement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Results</h2>
+
+      <!-- Results Highlight Cards -->
+      <div class="columns is-centered highlight-cards">
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-trophy"></i></div>
+              <p class="title is-5">82.7%</p>
+              <p class="content is-size-6">
+                Mean Dice on AMOS abdominal targets (MR→CT), outperforming all baselines by 60%+.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-heart"></i></div>
+              <p class="title is-5">94.2%</p>
+              <p class="content is-size-6">
+                Dice on cardiac MYO (MR→US), matching supervised performance in cross-modality setting.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-eye"></i></div>
+              <p class="title is-5">92.9%</p>
+              <p class="content is-size-6">
+                Dice on fundus OD (RIGA→BASE3), achieving competitive performance across all target domains.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-globe"></i></div>
+              <p class="title is-5">13 Domains</p>
+              <p class="content is-size-6">
+                Validated across 13 adaptation directions and 24 anatomical targets with consistent improvements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <h3 class="title is-4">Abdominal Segmentation (AMOS)</h3>
+          <p class="is-size-6" style="margin-bottom: 0.8rem; color: #666;">
+            Dice scores (%) on 15 abdominal organs. Best results in <b>bold</b>.
+          </p>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Spleen</th>
+                  <th>R.Kidney</th>
+                  <th>L.Kidney</th>
+                  <th>Gallbl.</th>
+                  <th>Esoph.</th>
+                  <th>Liver</th>
+                  <th>Stom.</th>
+                  <th>Aortic</th>
+                  <th>V.Cava</th>
+                  <th>Pancr.</th>
+                  <th>R.Adre.</th>
+                  <th>L.Adre.</th>
+                  <th>Duod.</th>
+                  <th>Bladder</th>
+                  <th>Pros.</th>
+                  <th>Mean</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>65.1</td><td>71.2</td><td>63.2</td><td>27.2</td><td>42.2</td><td>82.2</td><td>46.9</td><td>72.0</td><td>61.7</td><td>55.7</td><td>39.7</td><td>44.7</td><td>38.5</td><td>0.0</td><td>0.0</td><td>47.4</td>
+                </tr>
+                <tr>
+                  <td>Supervised</td>
+                  <td>97.2</td><td>96.4</td><td>94.7</td><td>86.0</td><td>84.1</td><td>97.6</td><td>93.1</td><td>95.3</td><td>90.2</td><td>83.7</td><td>77.8</td><td>78.9</td><td>81.6</td><td>83.3</td><td>85.5</td><td>88.4</td>
+                </tr>
+                <tr>
+                  <td>UPL</td>
+                  <td>23.9</td><td>7.7</td><td>30.2</td><td>0.0</td><td>12.5</td><td>23.6</td><td>10.7</td><td>9.3</td><td>0.7</td><td>8.6</td><td>0.0</td><td>0.0</td><td>2.0</td><td>0.0</td><td>0.0</td><td>8.6</td>
+                </tr>
+                <tr>
+                  <td>ProtoContra</td>
+                  <td>5.6</td><td>11.9</td><td>7.3</td><td>4.3</td><td>37.5</td><td>40.1</td><td>25.1</td><td>38.6</td><td>29.2</td><td>39.1</td><td>0.0</td><td>0.0</td><td>17.6</td><td>0.0</td><td>0.0</td><td>17.1</td>
+                </tr>
+                <tr>
+                  <td>IAPC</td>
+                  <td>8.7</td><td>4.5</td><td>1.9</td><td>1.3</td><td>4.5</td><td>15.2</td><td>14.3</td><td>9.7</td><td>4.6</td><td>2.0</td><td>0.0</td><td>0.0</td><td>2.2</td><td>19.8</td><td>7.2</td><td>6.4</td>
+                </tr>
+                <tr>
+                  <td>◇ DFG</td>
+                  <td>0.7</td><td>28.7</td><td>4.1</td><td>0.0</td><td>35.1</td><td>35.0</td><td>16.6</td><td>13.0</td><td>22.0</td><td>29.7</td><td>0.0</td><td>0.0</td><td>21.2</td><td>0.0</td><td>0.0</td><td>13.7</td>
+                </tr>
+                <tr>
+                  <td>◇ IPLC</td>
+                  <td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>65.4</td><td>10.5</td><td>6.6</td><td>4.1</td><td>3.8</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>6.0</td>
+                </tr>
+                <tr>
+                  <td>◇ SRPL</td>
+                  <td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td><td>41.0</td><td>47.6</td><td>42.2</td><td>66.0</td><td>26.2</td><td>46.6</td><td>0.0</td><td>0.0</td><td>29.4</td><td>0.0</td><td>0.0</td><td>19.9</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>◇ Search2Adapt</b></td>
+                  <td><b>96.5</b></td><td><b>95.3</b></td><td><b>95.0</b></td><td><b>82.4</b></td><td><b>79.1</b></td><td><b>97.0</b></td><td><b>86.9</b></td><td><b>94.6</b></td><td><b>45.3</b></td><td><b>81.2</b></td><td><b>74.2</b></td><td><b>76.1</b></td><td><b>78.0</b></td><td><b>78.8</b></td><td><b>80.5</b></td><td><b>82.7</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">◇ denotes VFM-coupled methods. Our method achieves 82.7% mean Dice, substantially outperforming all baselines.</p>
+        </div>
+      </div>
+
+      <!-- Qualitative Results -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <h3 class="title is-4 has-text-centered">Qualitative Results</h3>
+          <div class="method-figure">
+            <img src="static/images/Figure4_Example_Result.png" alt="Qualitative Results">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Qualitative results</b> across diverse domain adaptation directions. Rows 1-2: abdominal targets; Row 3: cardiac, polyp, and brain targets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cardiac & Polyp Results -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <h3 class="title is-4">Cardiac & Polyp Segmentation</h3>
+          <p class="is-size-6" style="margin-bottom: 0.8rem; color: #666;">
+            Dice (%) and ASD (mm) on cross-modality cardiac and cross-dataset polyp targets.
+          </p>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="4">Cardiac MR→US</th>
+                  <th colspan="4">Cardiac US→MR</th>
+                  <th colspan="2">Polyp Kvasir→CVCDB</th>
+                  <th colspan="2">Polyp CVCDB→Kvasir</th>
+                </tr>
+                <tr>
+                  <th>LV</th><th>MYO</th><th>LV<sub>ASD</sub></th><th>MYO<sub>ASD</sub></th>
+                  <th>LV</th><th>MYO</th><th>LV<sub>ASD</sub></th><th>MYO<sub>ASD</sub></th>
+                  <th>Dice</th><th>ASD</th>
+                  <th>Dice</th><th>ASD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>1.7</td><td>3.1</td><td>56.2</td><td>66.9</td>
+                  <td>3.2</td><td>1.8</td><td>60.5</td><td>56.8</td>
+                  <td>65.1</td><td>5.8</td><td>60.2</td><td>23.7</td>
+                </tr>
+                <tr>
+                  <td>Supervised</td>
+                  <td>94.4</td><td>88.1</td><td>3.2</td><td>4.1</td>
+                  <td>95.8</td><td>91.2</td><td>0.3</td><td>0.3</td>
+                  <td>99.8</td><td>0.4</td><td>97.4</td><td>0.9</td>
+                </tr>
+                <tr>
+                  <td>UPL</td>
+                  <td>2.8</td><td>0.0</td><td>90.5</td><td>N/A</td>
+                  <td>0.5</td><td>2.9</td><td>88.9</td><td>85.6</td>
+                  <td>67.1</td><td>2.2</td><td>60.2</td><td>11.4</td>
+                </tr>
+                <tr>
+                  <td>ProtoContra</td>
+                  <td>1.2</td><td>17.0</td><td>54.9</td><td>56.4</td>
+                  <td>5.2</td><td>4.9</td><td>72.9</td><td>74.8</td>
+                  <td>78.0</td><td>0.9</td><td>68.9</td><td>9.5</td>
+                </tr>
+                <tr>
+                  <td>IAPC</td>
+                  <td>18.4</td><td>3.1</td><td>51.3</td><td>97.9</td>
+                  <td>25.8</td><td>5.6</td><td>34.1</td><td>42.6</td>
+                  <td>73.3</td><td>4.4</td><td>61.2</td><td>13.7</td>
+                </tr>
+                <tr>
+                  <td>◇ DFG</td>
+                  <td>4.6</td><td>4.5</td><td>51.6</td><td>63.1</td>
+                  <td>2.3</td><td>6.9</td><td>69.3</td><td>66.5</td>
+                  <td>19.1</td><td>97.5</td><td>26.8</td><td>87.5</td>
+                </tr>
+                <tr>
+                  <td>◇ IPLC</td>
+                  <td>1.7</td><td>5.8</td><td>50.5</td><td>48.3</td>
+                  <td>2.9</td><td>11.5</td><td>48.4</td><td>26.1</td>
+                  <td>34.8</td><td>34.7</td><td>45.3</td><td>19.2</td>
+                </tr>
+                <tr>
+                  <td>◇ SRPL</td>
+                  <td>0.7</td><td>0.9</td><td>83.1</td><td>79.8</td>
+                  <td>8.5</td><td>9.1</td><td>30.1</td><td>45.9</td>
+                  <td>33.0</td><td>31.4</td><td>44.9</td><td>18.9</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>◇ Search2Adapt</b></td>
+                  <td><b>87.9</b></td><td><b>94.2</b></td><td><b>3.0</b></td><td><b>2.2</b></td>
+                  <td><b>89.7</b></td><td><b>95.2</b></td><td><b>0.3</b></td><td><b>0.2</b></td>
+                  <td><b>86.0</b></td><td>7.1</td><td><b>87.4</b></td><td><b>10.6</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">Our method achieves strong performance in extremely challenging cross-modality cardiac settings.</p>
+        </div>
+      </div>
+
+      <!-- Fundus Results -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-10">
+          <h3 class="title is-4">Fundus Segmentation (RIGA → BASE)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="6">Dice (%)</th>
+                  <th colspan="6">ASD (mm)</th>
+                </tr>
+                <tr>
+                  <th>BASE1 OD</th><th>BASE1 OC</th>
+                  <th>BASE2 OD</th><th>BASE2 OC</th>
+                  <th>BASE3 OD</th><th>BASE3 OC</th>
+                  <th>BASE1 OD</th><th>BASE1 OC</th>
+                  <th>BASE2 OD</th><th>BASE2 OC</th>
+                  <th>BASE3 OD</th><th>BASE3 OC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>83.5</td><td>72.6</td><td>79.5</td><td>73.7</td><td>82.8</td><td>78.2</td>
+                  <td>7.2</td><td>13.9</td><td>5.8</td><td>9.2</td><td>10.7</td><td>10.1</td>
+                </tr>
+                <tr>
+                  <td>Supervised</td>
+                  <td>94.5</td><td>91.6</td><td>93.7</td><td>92.1</td><td>94.2</td><td>92.8</td>
+                  <td>3.6</td><td>4.7</td><td>3.4</td><td>4.4</td><td>3.2</td><td>4.2</td>
+                </tr>
+                <tr>
+                  <td>◇ SRPL</td>
+                  <td>90.5</td><td>86.3</td><td>88.7</td><td>87.7</td><td>89.6</td><td>89.9</td>
+                  <td>5.9</td><td>6.7</td><td>6.0</td><td>7.0</td><td>5.9</td><td>5.7</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>◇ Search2Adapt</b></td>
+                  <td><b>92.3</b></td><td>84.9</td><td><b>89.3</b></td><td>85.4</td><td><b>92.9</b></td><td>88.4</td>
+                  <td>6.5</td><td>7.8</td><td>6.7</td><td>8.0</td><td><b>3.9</b></td><td>6.4</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">Our method achieves competitive performance on fundus segmentation across all target domains.</p>
+        </div>
+      </div>
+
+      <!-- Fundus Qualitative -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure5_Fundus_Result.png" alt="Fundus Results">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Fundus qualitative results</b> from RIGA to BASE1, BASE2, and BASE3.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablation Studies -->
+  <section class="section" id="ablation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Ablation Studies</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-12">
+          <h3 class="title is-5">Component Analysis (MR→CT)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table ablation-table">
+              <thead>
+                <tr>
+                  <th>Variant</th>
+                  <th>Spleen</th>
+                  <th>Liver</th>
+                  <th>Pancr.</th>
+                  <th>V.Cava</th>
+                  <th>Mean Dice</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>w/o Perceptor</td>
+                  <td>96.1</td><td>97.2</td><td>81.0</td><td>5.2</td><td>80.2</td>
+                </tr>
+                <tr>
+                  <td>w/o CoTS</td>
+                  <td>95.7</td><td>96.6</td><td>79.4</td><td>14.8</td><td>79.9</td>
+                </tr>
+                <tr>
+                  <td>w/o CoT Diversity</td>
+                  <td>96.5</td><td>97.2</td><td>81.5</td><td>3.8</td><td>80.5</td>
+                </tr>
+                <tr>
+                  <td>w/o CoT Reflection</td>
+                  <td>95.6</td><td>95.7</td><td>74.8</td><td>15.3</td><td>76.2</td>
+                </tr>
+                <tr>
+                  <td>w/o VFM Postprocess</td>
+                  <td>96.0</td><td>96.1</td><td>78.2</td><td>10.1</td><td>78.9</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>Search2Adapt (Full)</b></td>
+                  <td><b>96.5</b></td><td><b>97.0</b></td><td><b>81.2</b></td><td><b>45.3</b></td><td><b>82.7</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">All components contribute to the final performance. Removing any component degrades results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 section-title">BibTeX</h2>
+      <pre class="bibtex-box"><code>@inproceedings{shi2026search2adapt,
+  title={Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation},
+  author={Shi, Yulong and Zhang, Wenwen and Li, Ziyi and Qi, Lin},
+  booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website template is adapted from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>,
+          licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

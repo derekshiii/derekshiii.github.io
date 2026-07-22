@@ -1,0 +1,27 @@
+\begin{algorithm}[t]
+\caption{Search2Adapt Framework}
+\label{alg:Search2Adapt}
+\begin{algorithmic}[1]
+\Require Target dataset $\mathcal{D}_T$, source model $f(\cdot;\theta)$, toolbox $\mathcal{A}$, dynamic memory $\mathcal{M}$
+\Ensure Target-adapted model $f(\cdot;\theta_T)$
+
+\State $\text{Profile} \leftarrow \textbf{Perceptor}(\mathcal{D}_T)$ \Comment{Extract domain profile}
+\State $\mathcal{D}_{PL} \leftarrow \emptyset$ \Comment{Initialize pseudo-label dataset}
+
+\For{each $x_i \in \mathcal{D}_T$}
+    \State $\hat{y}_i^{(0)} \leftarrow \text{Generate initial mask for } x_i$ 
+    \State $s_0 \leftarrow (x_i, \hat{y}_i^{(0)})$ \Comment{Initialize state}
+    
+    \State $\Pi_{prior} \leftarrow \textbf{Retrieve}(\mathcal{M}, \text{Profile})$ \Comment{Fetch strategy priors}
+    
+    \State $\pi^*, \hat{y}_i^*, R^* \leftarrow \textbf{CoTS}(s_0, \text{Profile}, \Pi_{prior}; \mathcal{A})$ %\Comment{Agent-driven search}
+    
+    \State $\mathcal{M} \leftarrow \textbf{Update}(\mathcal{M}, \pi^*, R^*)$ \Comment{Accumulate knowledge}
+    \State $\mathcal{D}_{PL} \leftarrow \mathcal{D}_{PL} \cup \{(x_i, \hat{y}_i^*)\}$
+\EndFor
+
+\State $\theta_T \leftarrow \arg\min_{\theta} \sum_{(x,\hat{y})\in \mathcal{D}_{PL}} \mathcal{L}_{seg}(f(x;\theta), \hat{y})$ \Comment{Distillation}
+
+\State \Return $f(\cdot;\theta_T)$
+\end{algorithmic}
+\end{algorithm}

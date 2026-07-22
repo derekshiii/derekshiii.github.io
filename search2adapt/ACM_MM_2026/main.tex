@@ -1,0 +1,279 @@
+
+\documentclass[sigconf, screen]{acmart}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+% \renewcommand\footnotetextcopyrightpermission[1]{} %remove copyright
+% \settopmatter{printacmref=false} %remove ACM reference format
+
+%%%%%%%%%%%%%%%%My Package%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{enumitem}
+\usepackage{algorithm}   % Environment algorithm undefined
+\usepackage{algpseudocode} % \State, \Require
+\usepackage{multirow}
+%%%%%%%%%%%%%%%%My Package%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\acmSubmissionID{1470}
+\title{Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation}
+
+\author{Yulong Shi}
+\affiliation{%
+  \institution{Northeastern University}
+  \city{Shenyang}
+  \country{China}
+}
+\email{yulongshi@stumail.neu.edu.cn}
+
+\author{Wenwen Zhang}
+\affiliation{%
+  \institution{Northeastern University}
+  \city{Shenyang}
+  \country{China}
+}
+\email{zhangwenwen1@mails.neu.edu.cn}
+
+\author{Ziyi Li}
+\affiliation{%
+  \institution{Northeastern University}
+  \city{Shenyang}
+  \country{China}
+}
+\email{lizy56@mails.neu.edu.cn}
+
+\author{Lin Qi\textsuperscript{*}}
+\affiliation{%
+  % \department{College of Medicine and Biological Information Engineering}
+  \institution{Northeastern University}
+  \city{Shenyang}
+  \country{China}
+}
+\email{qilin@bmie.neu.edu.cn}
+
+\begin{abstract}
+Source-Free Unsupervised Domain Adaptation (SFUDA) aims to mitigate domain shifts without accessing source data, which is critical for privacy-sensitive medical applications. Existing SFUDA approaches typically rely on static, open-loop pipelines with fixed adaptation procedures. Such rigid designs lack error correction and struggle to cope with the diverse characteristics of unseen target domains. To address this limitation, we propose Search2Adapt, which reformulates SFUDA as a dynamic decision-making problem. Our framework employs four collaborative agents, Perceptor, Strategist, Executor, and Evaluator, each driven by vision language models (VLMs) to analyze target-domain characteristics, design adaptation strategies, execute toolchains, and assess intermediate results. At the core of Search2Adapt lies Collaborative Tree Search (CoTS), which explores a rich action space comprising vision foundation models (VFMs) and segmentation operators. To enable reliable plan search under the SFUDA settings, we introduce a VLM-driven multimodal and anatomy-aware reward that evaluates pseudo-label quality through geometric feature translation and visual evidence. Furthermore, chain-of-thought (CoT) reflection allows the Strategist to calibrate the Evaluator's evaluation, forming a constructive deliberation process. By storing successful trajectories in a dynamic prior memory, Search2Adapt progressively accelerates adaptation across target samples. Extensive experiments demonstrate that our framework autonomously discovers domain-specific adaptation strategies, produces high-fidelity pseudo-labels, and achieves SOTA in SFUDA while enabling efficient distillation of lightweight student models. Code is available at \href{https://anonymous.4open.science/r/Search2Adapt-6607/}{this repository}
+\end{abstract}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Source-Free Unsupervised Domain Adaptation, Medical Image Analysis, Multi-Agent}
+
+\begin{teaserfigure}
+	\centering
+	\includegraphics[width=\linewidth]{./Figures/Figure1_WholeFramework.png}
+    \vspace{-6mm}
+    \caption{Search2Adapt: a multi-agent framework with collaborative tree search for SFUDA. 
+    (a) Toolbox of segmentation operators.
+    % , including preprocessing, VFM-based generation, and post-processing modules, which together define the action space for pseudo-label refinement.
+    (b) Collaborative multi-agent framework.
+    % , where Perceptor, Strategist, Executor, and Evaluator interact through a shared memory to form a closed-loop decision-making system for adaptive strategy planning and refinement.
+    (c) Example of collaborative tree search.
+    % , which performs plan-level exploration over candidate strategies, progressively identifying high-reward refinement plans through structured search and evaluation.
+    }
+	\label{fig_Overview}
+\end{teaserfigure}
+%\received{20 February 2007}
+%\received[revised]{12 March 2009}
+%\received[accepted]{5 June 2009}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+\section{Introduction}
+Deep learning has achieved remarkable success in medical image analysis when training and deployment share the same data distribution. However, in real-world clinical settings, deep learning models often experience significant performance degradation due to domain shifts arising from differences in imaging modalities, scanner vendors, and acquisition protocols. Such discrepancies between training and deployment distributions are common in multi-center and multi-modality clinical practice, posing a major challenge to reliable clinical deployment. 
+
+Domain adaptation aims to mitigate this issue by leveraging both source and target domain data during model adaptation. In many medical scenarios, however, direct access to source data is strictly limited by privacy regulations and institutional policies. This constraint has led to the emergence of SFUDA, where adaptation is performed using only a pretrained source model and unlabeled target data~\cite{SFUDA_review}. While SFUDA offers an attractive solution for privacy-preserving model deployment, the absence of both source data and target labels makes adaptation inherently challenging.
+
+To address this challenge, various SFUDA methods have been proposed. Most existing approaches follow a static and open-loop adaptation paradigm. They typically rely on predefined pipelines that are uniformly applied across target domains, implicitly assuming that a fixed adaptation strategy is sufficient regardless of domain characteristics. More importantly, these methods lack structured, verifiable feedback mechanisms, as intermediate results generated in early stages are directly used for subsequent optimization without verification and correction. As a result, early errors cannot be effectively detected and propagate throughout the adaptation process, leading to suboptimal performance under domain shifts. These limitations suggest that SFUDA should be viewed as a dynamic decision-making problem that requires adaptive strategy selection.
+
+Recent advances in VLMs have enabled agentic systems capable of perception, reasoning, and tool use, providing a natural foundation for adaptive decision-making. Building on this paradigm, we propose Search2Adapt, which coordinates four specialized agents, Perceptor, Strategist, Executor, and Evaluator, to form a closed-loop system that analyzes target domain characteristics, proposes candidate adaptation plans, executes segmentation operators \cite{monai}, and evaluates intermediate results. To effectively explore the large space of adaptation strategies, we introduce CoTS that performs plan-level exploration to propose adaptation plans, VLM-based reasoning to estimate strategy effectiveness, and employs a diversity-augmented search to balance exploration and exploitation. To enable reliable evaluations, we design a multimodal and anatomy-aware reward that combines geometric feature translation and visual evidence with VLM reasoning based on anatomical priors. In addition, a CoT reflection allows the Strategist to calibrate the Evaluator's evaluation, improving search robustness. Furthermore, a dynamic prior memory accumulates successful adaptation plans across samples, enabling more efficient and stable adaptation. Our contributions are summarized as follows:
+\begin{enumerate}[leftmargin=*,noitemsep]
+\item We propose Search2Adapt, a multi-agent framework that reformulates SFUDA from executing static adaptation pipelines into a dynamic decision-making problem, thereby transforming open-loop procedures into closed-loop decision processes.
+\item We introduce CoTS equipped with a multimodal and anatomy-aware reward, enabling efficient and reliable strategy exploration under SFUDA settings.
+\item We develop a CoT-based reflection and a dynamic prior memory that jointly improve search stability and accelerate adaptation through cross-sample knowledge reuse.
+\end{enumerate}
+\begin{figure}
+	\centering
+	\includegraphics[width=1.05\linewidth]{./Figures/Figure2_TreePlot.png}
+    \vspace{-6mm}
+    \caption{Generalization of Search2Adapt across 13 domain adaptation directions and 24 anatomy targets. Each branch represents an anatomical target, and each outer node corresponds to an adaptation direction. The size of each outer circle indicates the DICE of adaptation performance. }
+	\label{fig_TreePlot}
+\vspace{-3mm}
+\end{figure}
+\section{Related Works}
+\subsection{SFUDA for Medical Image Analysis}
+SFUDA aims to adapt a pretrained model to an unlabeled target domain without accessing source data~\cite{SFUDA_review}. Existing methods primarily rely on predefined adaptation strategies, including data synthesis, self-training, knowledge distillation, and recent approaches that incorporate VFMs. Data synthesis approaches attempt to approximate the source distribution by generating source-like samples~\cite{Zeng2024ReliableSA}. Self-training methods iteratively refine models using pseudo-labels on target data, often combined with prototype alignment~\cite{protocontra} or uncertainty-aware filtering~\cite{a3dualud}. Knowledge distillation-based approaches adopt teacher-student frameworks to transfer domain-invariant knowledge during adaptation~\cite{IAPC}. More recently, VFM-coupled methods leverage the strong zero-shot segmentation capability of VFMs~\cite{iplc+,SRPL,iplc,prosfda}, typically using pseudo-labels generated by the source model as prompts to guide segmentation.
+
+Despite these advances, most existing approaches still operate under static and open-loop paradigms. Adaptation strategies are predefined and applied uniformly across target domains, without explicitly modeling domain-specific characteristics. Moreover, intermediate results are rarely verified or corrected, causing early-stage errors to propagate throughout the adaptation. This limitation restricts their ability to handle diverse and complex domain shifts.
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\linewidth]{./Figures/Figure3_Detail_Illustration.png}
+    \vspace{-6mm}
+    \caption{Detailed illustration of the pseudo-label generation process in Search2Adapt.}
+	\label{fig_DetailIllustration}
+\vspace{-3mm}
+\end{figure*}
+\subsection{Vision Foundation Models}
+VFMs leverage large-scale pretraining to extract transferable visual representations, enabling strong generalization across diverse modalities and domains. Early advancements primarily focused on geometry-aware VFMs, such as SAM~\cite{sam} and its variants (SAM3~\cite{sam3} and MedSAM-3D~\cite{medsam3d}), which excel at capturing shape and boundary information via flexible, prompt-based interaction. While highly effective for structural delineation, these models often lack the domain-specific context required for clinical interpretation. To bridge this gap, semantic-aware VFMs have emerged to integrate high-level knowledge into visual understanding. Models such as BiomedParse~\cite{biomedparse} and SAT~\cite{sat} enable text-guided segmentation and recognition by encoding rich semantic priors of anatomical structures and clinical concepts. Together, these complementary paradigms provide powerful tools for medical image analysis. However, directly deploying such VFMs in clinical edge environments is computationally prohibitive. To overcome these bottlenecks, our framework treats VFMs as frozen, callable knowledge sources within a dynamic search space. Ultimately, we distill their collaborative, zero-shot reasoning knowledge into a lightweight model, achieving a critical balance between high-fidelity adaptation and inference efficiency.
+
+\subsection{Agentic Systems and Search-Based Planning}
+Recent advances in VLM have enabled the development of agentic systems capable of perception, reasoning, and tool use \cite{ipo}. In medical image analysis, such systems have been explored to perform complex decision-making processes, including dynamic tool selection and iterative refinement \cite{Li2024AgentHA,zhu2025intelligentagenticcompleximage,coevolvingagent}. By distributing complex problem-solving processes across different agents, these systems can coordinate complementary capabilities and improve robustness.
+
+In parallel, search-based planning algorithms, such as Monte Carlo Tree Search \cite{MCTS_survey}, provide a principled mathematical structure for navigating massive decision spaces. Recent literature has begun to integrate VLM-driven reasoning directly into these search mechanisms \cite{CollaborativeTreeSearch}. Traditionally, tree search relies on an external environment simulator to provide definitive reward signals. In the context of SFUDA, where ground-truth supervision is entirely absent, this dependency is fundamentally limiting. To overcome this, our framework leverages the VLM as an intrinsic, surrogate reward function. By logically assessing intermediate states, the VLM can virtually estimate the anatomical viability of candidate strategies prior. This mechanism provides reliable rewards for guiding exploration and significantly improves search efficiency by pruning unviable paths early, thereby reducing computational overhead.
+
+\section{Method}
+\label{sec:method}
+Given an unlabeled target dataset $\mathcal{D}_T=\{x_i\}_{i=1}^{N}$, where $x_i\in\mathbb{R}^{H\times W\times D}$ and the goal of SFUDA is to obtain a target adapted model without access to source data. Search2Adapt divides SFUDA into pseudo-label generation and knowledge distillation. Specifically, the pseudo-label generation process is modeled as a sequential decision process, where the state is defined as $s_t=(x_i,\hat{y}_i^{(t)})$. Each action $a_t \in \mathcal{A}$ corresponds to applying a segmentation operator from a defined toolbox $\mathcal{A}$, which serves as the action space containing preprocessing, VFMs, and post-processing operators. A sequence of actions $\pi=(a_1,\dots,a_K)$ defines a refinement strategy, and the objective is to find the optimal strategy $\pi^* = \arg\max_{\pi} R(\pi)$, where $R(\pi)$ evaluates the quality of the resulting pseudo-label.
+\subsection{Multi-Agent Collaborative Framework}
+To enable adaptive strategy exploration, we delegate the pseudo-label generation process to four specialized agents that interact through a shared memory serving as a global workspace.
+
+\textbf{Perceptor} analyzes target-domain characteristics and produces a domain profile:
+$s \rightarrow \text{Profile}$.
+
+\textbf{Strategist} proposes candidate refinement strategies conditioned on the current state and domain profile:
+$(s_t,\text{Profile}) \rightarrow \{\pi_1,\pi_2,\dots\}$.
+
+\textbf{Executor} applies the selected strategy deterministically to update the pseudo-label:
+$(s_t,\pi) \rightarrow s_{t+1}$.
+
+\textbf{Evaluator} estimates the quality of pseudo-labels and produces a reward signal:
+$s_t \rightarrow R \in [0,1]$.
+
+These agents interact in a closed loop through shared memory, enabling iterative refinement, feedback-driven correction, and cross-sample knowledge accumulation.
+\subsection{Collaborative Tree Search}
+To efficiently explore the strategy space, we introduce CoTS, which performs plan-level search over candidate refinement plan. Each node $v$ in the search tree represents a refinement plan and its corresponding state. During search, nodes are selected according to the Collaborative Action-Value Function (CAVF):
+\begin{equation}
+\text{CAVF}(v)=V(v)+w\sqrt{\frac{\ln N_{\text{parent}}}{N(v)}}+\lambda D(v), D(v)=\frac{1}{\sqrt{c(\sigma_v)}}
+\end{equation}
+where $V(v)$ denotes the estimated value, $N(v)$ is the visit count, and $D(v)$ encourages exploration of diverse strategies, and $\sigma_v$ denotes the tool signature of plan $v$, and $c(\sigma_v)$ is the number of previously explored nodes with the same signature. This design discourages repeated exploration of identical tool combinations and promotes strategy diversity.
+
+CoTS follows a two-stage procedure. In the first stage, the Strategist proposes multiple candidate plans, and the Evaluator assesses their effectiveness through CoT reasoning, enabling efficient plan-level exploration. In the second stage, only top-K strategies are executed by the Executor with feasibility monitoring. To further improve robustness, a CoT reflection allows the Strategist to revise evaluation scores when inconsistencies are detected, forming a deliberative interaction between planning and evaluation. The resulting reward is then propagated back to update ancestor nodes.
+
+\subsection{Multimodal and Anatomy-Aware Reward}
+Since ground-truth is unavailable in SFUDA, reliable evaluation of pseudo-label quality is critical. Directly applying VLMs to 3D predictions is ineffective due to their limited ability to natively interpret volumetric data.
+
+We address this issue by introducing a multimodal and anatomy-aware reward that fuses visual evidence with programmatic geometric features. To bridge the dimensional gap of volumetric data, we extract a random set of 2D slices, overlay the pseudo-label onto the original images, and compile them into unified visual evidence grids. Concurrently, we extract quantitative geometric features from the predictions, such as the number of connected components, spatial extent, and boundary smoothness, and translate them into structured textual descriptions. By jointly processing the visual evidence grid and the textual geometric profile, the Evaluator agent employs CoT reasoning process to transparently assess the pseudo-label across four critical dimensions: anatomical plausibility ($R_{anat}$), morphological consistency ($R_{morp}$), boundary precision ($R_{bound}$), and false positives ($R_{fp}$). The final reward $R$ is formulated as:
+$$R = w_{anat} R_{anat} + w_{morp} R_{morp} + w_{bound} R_{bound} + w_{fp} R_{fp}$$
+These weights are integrated into the Evaluator's meta-prompt (Provided in Appendix C) as prioritized guidance, which enables the VLM to dynamically allocate its attention. Evaluator explicitly articulates its diagnostic rationale for each dimension before computing the final reward scores, ensuring the reward assignment is interpretable and grounded in anatomical logic.
+
+\subsection{Shared Memory and Knowledge Distillation}
+To improve efficiency and scalability, we maintain a dynamic strategy memory $\mathcal{M}$ that stores successful refinement trajectories discovered during previous searches. Each trajectory is associated with its reward and usage frequency, allowing high-quality strategies to serve as priors for subsequent samples. During CoTS initialization, strategies retrieved from $\mathcal{M}$ are prioritized, significantly accelerating convergence and reducing redundant exploration.
+
+After the search stage, we obtain refined pseudo-labels: $\mathcal{D}_{PL}=\{(x_i,\hat{y}_i^{*})\}$. To enable efficient deployment, we distill the knowledge discovered by the multi-agent search process into a lightweight model. The model parameters are optimized as:
+\begin{equation}
+\theta_T = \arg\min_{\theta}\sum_{(x,\hat{y})\in\mathcal{D}_{PL}}
+\mathcal{L}_{seg}(f(x;\theta),\hat{y})
+\end{equation}
+where $\mathcal{L}_{seg}$ is a combination of Dice and Cross-Entropy loss. Through this process, the adaptation knowledge is compressed into a lightweight deployable model.
+\section{Experiments and Results}
+\subsection{Dataset Description}
+We conduct extensive experiments across 13 domain adaptation directions and 24 anatomical targets to comprehensively assess the performance of Search2Adapt
+
+\textbf{Abdominal CT/MRI:}
+AMOS \cite{amos} comprises multi-center CT and MRI volumes with voxel-wise annotations for 15 abdominal organs, reflecting substantial variations in acquisition protocols and imaging conditions.
+\textbf{Brain MRI:}
+BraTS-2024 \cite{brats2024}  contains 3D multi-modal MRI scans, including T1n, T1c, T2w, and T2f, with annotations for four tumor-related subregions: enhancing tumor (ET), tumor core (TC), surrounding non-enhancing FLAIR hyperintensity (SNFH), and resection cavity (RC).
+\textbf{Cardiac MR/US:}
+ACDC \cite{acdc} consists of cardiac MRI scans annotated for the left ventricle (LV), myocardium (MYO), and right ventricle, while CAMUS \cite{CAMUS} provides 2D ultrasound sequences with annotations for LV, MYO, and left atrium. For cross-modality settings (US$\rightarrow$MR and MR$\rightarrow$US), we focus on LV and MYO for consistent evaluation.
+\textbf{Polyp Imaging:}
+We adopt Kvasir \cite{kvasir} and CVCDB \cite{CVCDB}, two widely used colonoscopy datasets containing pixel-level annotations of polyp regions from endoscopic images and video frames.
+\textbf{Fundus Imaging:}
+RIGA+ \cite{RIGA+} is a multi-domain retinal dataset for joint optic disc (OD) and optic cup (OC) segmentation, covering five domains. We use the RIGA subset (BinRushed and Magrabia) as source domains and MESSIDOR subset (BASE1, BASE2, BASE3) as target domains.
+\input{Pseudo_Code}
+%\input{algorithm}
+
+\input{Tables/Table1_AMOS_MR-CT}
+\input{Tables/Table3_BraTS}
+\subsection{Implementation and Experiments Details}
+All experiments were implemented using PyTorch and conducted on an NVIDIA RTX 4090 GPU. We utilized nnUNet as our source model, which employs a ResNet-based architecture pre-trained for 300 epochs. Building upon this, a lightweight student model initialized from the source model was adapted to the target domain via knowledge distillation for 300 epochs. To drive the Search2Adapt, we employed the Qwen3.5-0.8B-GGUF-Q4-K-XL \cite{qwen3.5}, accelerated by Unsloth \cite{unsloth}, and applied unified meta-prompts across all adaptation directions. During the search phase, the CAVF exploration weight $w$ and the diversity coefficient $\lambda$ were set to $\sqrt{2}$ and 0.1, respectively. Additionally, both the number of candidate plan variants and the top-$K$ execution budget were fixed at 4. For the experimental setup, all target images were randomly divided into training and test sets in an 8:2 ratio. Crucially, the pseudo-label generation and knowledge distillation processes were strictly confined to the training split. Finally, we evaluated the adaptation performance using the Dice similarity coefficient (DICE) and Average Surface Distance (ASD), reporting the results as mean $\pm$ std across all samples. Further implementation details, including the specific meta-prompts and the Evaluator's toolbox, are provided in the Appendix to ensure full reproducibility.
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=\linewidth]{./Figures/Figure4_Example_Result.png}
+    \vspace{-6mm}
+    \caption{Qualitative results of Search2Adapt demonstrate strong generalization across diverse and challenging domain adaptation directions after adaptation. Specifically, the first and second rows show adaptation to abdominal targets, while the third row shows adaptation to cardiac, polyp, and brain targets.}
+	\label{fig_ExampleResult}
+\vspace{-3mm}
+\end{figure*}
+\subsection{Comparison with SOTA Methods}
+We compare Search2Adapt with six SOTA SFUDA methods, covering both medical-purpose approaches (UPL \cite{upl}, ProtoContra \cite{protocontra}, DFG \cite{DFG}, IPLC \cite{iplc}, SRPL \cite{SRPL}) and general-purpose approaches (IAPC \cite{IAPC}). Notably, our evaluation aligns with the emerging paradigm of VFM-coupled SFUDA, in which DFG and IPLC use MedSAM, while SRPL is built on SAM. The remaining methods are traditional SFUDA methods that do not use VFM. In our experiments, \textbf{No Adaptation} denotes the source model tested directly on the target domain without adaptation, while \textbf{Supervised} denotes training and testing on the target domain with full supervision.
+\input{Tables/Table4_Cardic_Polyp}
+
+\textbf{Results on Abdominal Targets}
+Table~\ref{tab:AMOS} summarizes the quantitative results on abdominal targets in MR$\rightarrow$CT and CT$\rightarrow$MR. In MR$\rightarrow$CT, Search2Adapt achieves a mean DICE of 82.7\%, substantially outperforming all existing SFUDA methods and closely approaching \textbf{Supervised} (88.4\%). Notably, our method consistently delivers high DICE across both large and small organs, including the spleen (96.5\%), liver (97.0\%), and pancreas (81.2\%), whereas most competing methods suffer from widespread prediction failures. Similar trends are observed in CT$\rightarrow$MR. Search2Adapt achieves a mean DICE of 77.0\%, significantly exceeding other SFUDA methods and narrowing the gap to \textbf{Supervised} (86.2\%). Despite these overall improvements, we observe suboptimal performance on the vena cava (45.3\% in MR$\rightarrow$CT and 31.7\% in CT$\rightarrow$MR). This local degradation is attributable to certain refinement operators in our toolbox, such as Gaussian smoothing, which can inadvertently over-smooth continuous tubular structures during the adaptation process. Nevertheless, these results highlight the overall effectiveness of Search2Adapt in improving adaptation performance and validating its robustness across the vast majority of the 15 distinct anatomical targets.
+
+\textbf{Results on Brain Targets}
+Table~\ref{tab:BraTS} reports the performance of Search2Adapt on brain targets. In T1n$\rightarrow$T2w, Search2Adapt achieves a strong DICE of 77.3\% on SNFH and 77.2\% on RC, substantially outperforming \textbf{No Adaptation} and existing SFUDA methods. While improvements in smaller, more ambiguous regions such as TC and ET are more moderate, Search2Adapt maintains consistently low ASDs (1.8\,mm on SNFH and 2.5\,mm on RC), indicating reliable boundary precision under severe domain shifts. Similar trends are observed in T2w$\rightarrow$T1n, where Search2Adapt again delivers high DICE on SNFH (74.7\%) and RC (76.5\%) along with the lowest ASD.
+
+The advantage of Search2Adapt becomes more pronounced in post-contrast adaptation scenarios. In T1c$\rightarrow$T2f, our method achieves a DICE of 82.4\% on SNFH and 72.1\% on RC, closely approaching \textbf{Supervised}, while reducing the ASD of SNFH to 1.4\,mm. Likewise, in T2f$\rightarrow$T1c, Search2Adapt attains consistently high DICE across all tumor subregions (76.2\% on SNFH and 76.4\% on RC) with superior boundary accuracy. Compared with prior SFUDA methods, which often favor specific subregions or exhibit large ASD, Search2Adapt provides more balanced improvements across both DICE and ASD.
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=\linewidth]{./Figures/Figure5_Fundus_Result.png}
+    \vspace{-6mm}
+    \caption{Qualitative results from source domain RIGA to targets BASE1, BASE2, and BASE3 (top to bottom).}
+	\label{fig_Fundus}
+\vspace{-3mm}
+\end{figure*}
+\input{Tables/Table6_Fundus}
+
+\textbf{Results on Cardiac Targets}
+We further evaluate Search2Adapt on the extremely challenging cross-modality cardiac adaptation directions, MR$\rightarrow$US and US$\rightarrow$MR, which involve a severe domain shift due to the fundamentally different imaging physics of MR and US. As reported in Table~\ref{tab:Cardiac_Polyp}, \textbf{No Adaptation} almost completely fails under these directions, yielding near-zero DICE and very large ASD. Existing SFUDA methods exhibit limited robustness, with most approaches producing low DICE and poor boundary localization.
+
+In contrast, Search2Adapt demonstrates strong, stable performance in both directions. For MR$\rightarrow$US, Search2Adapt achieves DICE of 87.9\% on LV and 94.2\% on MYO, closely matching \textbf{Supervised}, while substantially reducing ASD to 3.0\,mm and 2.2\,mm, respectively. Similar trends are observed in US$\rightarrow$MR, where Search2Adapt attains DICE of 89.7\% on LV and 95.2\% on MYO, together with the lowest ASD among all methods (0.3\,mm on LV and 0.2\,mm on MYO). These results indicate that Search2Adapt not only preserves high region overlap but also achieves precise anatomical boundary delineation, effectively mitigating cross-modality domain shifts.
+\input{Tables/Table7_Ablation_Study}
+
+\textbf{Results on Polyp Targets}
+We also validate Search2Adapt on polyp targets, which requires adaptation between endoscopic datasets with substantial variations in illumination conditions, camera characteristics, and polyp appearance. The quantitative results are summarized in Table~\ref{tab:Cardiac_Polyp}. For Kvasir$\rightarrow$CVCDB, Search2Adapt achieves a DICE of 86.0\%, outperforming the strongest competing method, ProtoContra, by +8.0\%. This substantial improvement indicates a markedly better overlap accuracy under challenging cross-dataset conditions. Although ProtoContra attains a lower ASD, Search2Adapt maintains a reasonably low ASD of 7.1\,mm, suggesting accurate and stable boundary localization alongside superior region consistency. A similar trend is observed in CVCDB$\rightarrow$Kvasir. Search2Adapt achieves a DICE of 87.4\%, exceeding ProtoContra by +18.5\%. While the ASD (10.6\,mm) is close to that of the best-performing methods, the significant gain in DICE highlights the effectiveness of our framework in capturing polyp regions under severe domain shifts. 
+
+\textbf{Results on Fundus Targets}
+Table~\ref{tab:Fundus} summarizes the quantitative results on fundus segmentation, where RIGA is used as the source domain and BASE1, BASE2, and BASE3 serve as target domains. Across all three adaptation directions, Search2Adapt consistently achieves the competitive overall performance among SFUDA methods for both targets, with DICE closely approaching \textbf{Supervised}. Specifically, Search2Adapt attains OD DICE of 92.3\%, 89.3\%, and 92.9\% on BASE1, BASE2, and BASE3, respectively, substantially outperforming existing SFUDA methods. Similar performance gains are observed for OC, where Search2Adapt consistently delivers higher DICE across all target domains (84.9\%, 85.4\%, and 88.3\% on BASE1, BASE2, and BASE3). Search2Adapt also yields consistently lower ASD across all target domains, indicating more accurate and stable boundary delineation, particularly for OC, which is highly sensitive to domain-specific appearance variations. Qualitative comparisons presented in Fig.~\ref{fig_Fundus} further illustrate this superiority.% These results demonstrate that multi-agent framework effectively captures target domain characteristics and mitigates error accumulation, enabling a robust domain adaptation under diverse imaging conditions.
+\subsection{Ablation Study}
+Table~\ref{tab:Ablation} summarizes the ablation studies validating each core component of Search2Adapt on abdominal targets. Additional analyses exploring the impact of VLM capacity (using Qwen3.5-9B and 27B) are provided in Appendix A.
+
+\textbf{Effect of Perceptor.}
+We first analyze the role of domain-aware perception by removing the Perceptor (\textbf{w/o Perceptor}). In this setting, the Strategist generates adaptation strategies without access to domain-specific characteristics, resulting in a blind planning process. As shown in Table~\ref{tab:Ablation}, removing the Perceptor consistently degrades performance with the mean DICE decreasing from 82.7\% to 80.2\% in MR$\rightarrow$CT. This is because the framework loses the ability to adapt its strategy to domain-specific properties. Consequently, the system falls back to a static adaptation pipeline, highlighting the importance of perception for strategy generation.
+
+\textbf{Effect of Collaborative Tree Search.}
+To evaluate the necessity of structured strategy exploration, we completely remove CoTS (\textbf{w/o CoTS}). In this setting, the system bypasses iterative refinement and relies solely on the initial pseudo-label generation plan. This leads to a significant performance drop (from 82.7\% to 79.9\% in MR$\rightarrow$CT), demonstrating that a static initial prediction is insufficient for navigating complex domain shifts. In contrast, CoTS enables systematic exploration of diverse candidate plans and effectively balances exploration and exploitation, leading to more reliable pseudo-label refinement.
+
+\textbf{Effect of CoT Diversity.}
+We further investigate the role of diversity in CoTS by removing the diversity-augmented exploration term (\textbf{w/o CoT Diversity}). In this variant, the search process tends to repeatedly explore similar tool combinations. The performance degradation (decreasing from 77.0\% to 74.5\% in CT$\rightarrow$MR) indicates that diversity is crucial for preventing premature convergence. By encouraging exploration of under-explored strategies, the diversity term improves search coverage and helps discover more effective adaptation plans.
+
+\textbf{Effect of CoT Reflection.}
+To assess the impact of the Strategist-Evaluator interaction, we remove the CoT-based reflection (\textbf{w/o CoT Reflection}), where the Strategist can no longer calibrate the Evaluator's scores. This results in inferior performance, suggesting that reflection plays a key role in correcting potential biases in evaluation and improving decision quality. The collaborative deliberation between agents enhances the robustness of the search process and mitigates suboptimal strategy selection.
+
+\textbf{Effect of Post-processing Operators.}
+Finally, we analyze the contribution of refinement tools within our action space by removing the post-processing operators (\textbf{w/o Post-processing}). In this setting, the framework relies exclusively on the raw semantic and geometric predictions generated by the VFMs, without utilizing post-processing corrections from the toolbox. As shown in Table~\ref{tab:Ablation}, performance consistently drops (3.8\% in MR$\rightarrow$CT). This indicates that while VFMs provide strong structural priors, post-processing operators are essential for rectifying localized artifacts and enforcing anatomical integrity. Their integration significantly enhances the final quality of pseudo-labels under domain shifts.
+
+\textbf{Overall Analysis.}
+The full Search2Adapt achieves the best performance across all settings, demonstrating the effectiveness of integrating perception, CoTS, diversity-aware exploration, CoT reflection, and comprehensive toolchain refinement. These components together form a closed-loop adaptation framework that significantly outperforms static and open-loop SFUDA pipelines.
+\section{Discussion}
+The core bottleneck of traditional SFUDA lies not only in the absence of source data and target labels, but in the formulation of the adaptation process itself. Existing methods mainly treat adaptation as a static, open-loop pipeline. By implicitly assuming a universally optimal adaptation strategy, they suffer from confirmation bias and error accumulation when confronting diverse domain shifts.
+
+Search2Adapt addresses this fundamental limitation by reformulating SFUDA as a dynamic, closed-loop strategic search problem. Through the proposed CoTS, our multi-agent framework replaces blind execution with a structured decision-making process. The continuous interaction between the Strategist and Evaluator introduces a critical CoT reflection, allowing the system to backtrack from sub-optimal toolchains and dynamically discover domain-specific refinement plans. This shifts the SFUDA paradigm from executing a predefined pipeline to learning how to adapt. A deeper implication of our framework is the novel utilization of VFMs and VLMs as external knowledge sources to compensate for the absence of source data and ground-truth in SFUDA. In traditional methods, adaptation relies primarily on low-level or feature-level information, which struggles to capture complex anatomical semantics. By integrating VFMs to provide zero-shot grounding and VLMs to provide high-level clinical reasoning, Search2Adapt effectively injects massive multi-modal knowledge into the adaptation loop.
+
+\textbf{Limitations:} The iterative VLM and VFM queries in our multi-agent search introduce computational overhead during pseudo-label generation. However, this adaptation cost is substantially mitigated by our dynamic prior memory, which accelerates the search for subsequent samples. Furthermore, knowledge distillation ensures the final deployable model remains highly efficient for clinical edge devices, compressing the massive VFMs ($\sim$862M SAM3 and $\sim$371M BiomedParse) into a lightweight $\sim$31M model. 
+
+\section{Conclusion}
+In this paper, we propose Search2Adapt, a novel multi-agent collaborative framework that overcomes the static, open-loop limitations of conventional SFUDA. By orchestrating Perceptor, Strategist, Executor, and Evaluator through CoTS, our method introduces autonomous error correction and dynamic strategy exploration. Furthermore, by combining geometric features and visual evidence into multimodal and anatomy-aware rewards, we successfully utilized VLMs and VFMs as powerful external knowledge sources to guide domain adaptation. Extensive experiments demonstrate that Search2Adapt autonomously discovers highly effective, domain-specific adaptation strategies, achieving SOTA performance across diverse adaptation directions while ultimately distilling its knowledge into a lightweight, deployable model.
+
+\begin{acks}
+To Robert, for the bagels and explaining CMYK and color spaces.
+\end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{ref}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf-authordraft.tex'.

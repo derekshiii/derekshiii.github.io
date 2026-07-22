@@ -1,0 +1,37 @@
+\begin{table*}[t]
+\centering
+\caption{DICE $\uparrow$ (\%, mean $\pm$ std) and ASD $\downarrow$ (mm, mean $\pm$ std) of domain adaptation results on cardiac and polyp targets.}
+\label{tab:Cardiac_Polyp}
+\vspace{-2mm}
+\resizebox{\textwidth}{!}{%
+\renewcommand{\arraystretch}{0.75}
+\begin{tabular}{@{}c@{\hspace{0.25cm}} cccc cccc @{\hspace{0.4cm}} cc cc@{}}
+\toprule
+% 表头第一层
+\multirow{3}{*}{\textbf{Methods}} & \multicolumn{8}{c}{\textbf{Cardiac}} & \multicolumn{4}{c}{\textbf{Polyp}} \\
+\cmidrule(lr){2-9} \cmidrule(lr){10-13}
+% 表头第二层
+& \multicolumn{4}{c}{\textbf{MR$\rightarrow$US}} & \multicolumn{4}{c}{\textbf{US$\rightarrow$MR}} & \multicolumn{2}{c}{\textbf{Kvasir$\rightarrow$CVCDB}} & \multicolumn{2}{c}{\textbf{CVCDB$\rightarrow$Kvasir}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-11} \cmidrule(lr){12-13}
+% 表头第三层
+& \multicolumn{2}{c}{\textbf{DICE}} & \multicolumn{2}{c}{\textbf{ASD}} & \multicolumn{2}{c}{\textbf{DICE}} & \multicolumn{2}{c}{\textbf{ASD}} & \textbf{DICE} & \textbf{ASD} & \textbf{DICE} & \textbf{ASD} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+% 表头第四层
+& \textbf{LV} & \textbf{MYO} & \textbf{LV} & \textbf{MYO} & \textbf{LV} & \textbf{MYO} & \textbf{LV} & \textbf{MYO} & & & & \\ 
+\midrule
+No Adaptation & 1.7$\pm$0.7 & 3.1$\pm$0.3 & 56.2$\pm$37.2 & 66.9$\pm$42.3 & 3.2$\pm$0.6 & 1.8$\pm$0.3 & 60.5$\pm$34.9 & 56.8$\pm$27.5 & 65.1$\pm$21.5 & 5.8$\pm$11.1 & 60.2$\pm$27.0 & 23.7$\pm$20.4 \\
+Supervised & 94.4$\pm$2.7 & 88.1$\pm$4.6 & 3.2$\pm$1.6 & 4.1$\pm$1.3 & 95.8$\pm$3.8 & 91.2$\pm$2.1 & 0.3$\pm$0.1 & 0.3$\pm$0.1 & 99.8$\pm$0.1 & 0.36$\pm$0.1 & 97.4$\pm$1.3 & 0.9$\pm$1.1 \\ 
+\midrule
+UPL \cite{upl} & 2.8$\pm$0.1 & 0.0$\pm$0.0 & 90.5$\pm$3.2 & N/A & 0.5$\pm$0.4 & 2.9$\pm$2.1 & 88.9$\pm$9.6 & 85.6$\pm$11.6 & 67.1$\pm$14.6 & \textcolor{blue}{\textbf{2.2$\pm$0.9}} & 60.2$\pm$31.3 & 11.4$\pm$17.2 \\
+ProtoContra \cite{protocontra} & 1.2$\pm$1.2 & \textcolor{blue}{\textbf{17.0$\pm$7.2}} & 54.9$\pm$14.2 & 56.4$\pm$13.9 & 5.2$\pm$5.8 & 4.9$\pm$3.2 & 72.9$\pm$12.4 & 74.8$\pm$10.5 & \textcolor{blue}{\textbf{78.0$\pm$12.1}} & \textcolor{red}{\textbf{0.9$\pm$0.6}} & \textcolor{blue}{\textbf{68.9$\pm$26.4}} & \textcolor{red}{\textbf{9.5$\pm$15.0}} \\
+IAPC \cite{IAPC} & \textcolor{blue}{\textbf{18.4$\pm$14.5}} & 3.1$\pm$7.5 & 51.3$\pm$29.6 & 97.9$\pm$45.3 & \textcolor{blue}{\textbf{25.8$\pm$15.2}} & 5.6$\pm$0.8 & {34.1$\pm$13.9} & 42.6$\pm$12.7 & 73.3$\pm$29.6 & 4.4$\pm$7.9 & 61.2$\pm$26.3 & 13.7$\pm$13.2 \\
+$\diamondsuit$DFG \cite{DFG} & 4.6$\pm$4.1 & 4.5$\pm$3.7 & 51.6$\pm$12.9 & 63.1$\pm$14.3 & 2.3$\pm$1.7 & 6.9$\pm$4.4 & 69.3$\pm$16.7 & 66.5$\pm$18.3 & 19.1$\pm$14.7 & 97.5$\pm$17.6 & 26.8$\pm$18.1 & 87.5$\pm$19.5 \\
+$\diamondsuit$IPLC \cite{iplc} & 1.7$\pm$2.0 & 5.8$\pm$2.5 & \textcolor{blue}{\textbf{50.5$\pm$18.1}} & \textcolor{blue}{\textbf{48.3$\pm$18.9}} & 2.9$\pm$3.6 & \textcolor{blue}{\textbf{11.5$\pm$8.9}} & 48.4$\pm$11.2 & \textcolor{blue}{\textbf{26.1$\pm$10.5}} & 34.8$\pm$11.7 & 34.7$\pm$22.9 & 45.3$\pm$21.2 & 19.2$\pm$8.4 \\
+$\diamondsuit$SRPL \cite{SRPL} & 0.7$\pm$1.1 & 0.9$\pm$1.2 & 83.1$\pm$31.0 & 79.8$\pm$19.2 & 8.5$\pm$9.3 & 9.1$\pm$9.3 & \textcolor{blue}{\textbf{30.1$\pm$15.3}} & 45.9$\pm$22.0 & 33.0$\pm$22.7 & 31.4$\pm$19.6 & 44.9$\pm$26.0 & 18.9$\pm$16.9 \\ 
+\midrule
+$\diamondsuit$\textbf{Ours} & \textcolor{red}{\textbf{87.9$\pm$4.7}} & \textcolor{red}{\textbf{94.2$\pm$2.8}} & \textcolor{red}{\textbf{3.0$\pm$0.8}} & \textcolor{red}{\textbf{2.2$\pm$0.4}} & \textcolor{red}{\textbf{89.7$\pm$3.6}} & \textcolor{red}{\textbf{95.2$\pm$3.8}} & \textcolor{red}{\textbf{0.3$\pm$0.1}} & \textcolor{red}{\textbf{0.2$\pm$0.1}}& \textcolor{red}{\textbf{86.0$\pm$18.1}} & {7.1$\pm$12.1} & \textcolor{red}{\textbf{87.4$\pm$16.3}} & \textcolor{blue}{\textbf{10.6$\pm$15.9}} \\ 
+\bottomrule
+\end{tabular}%
+}
+\vspace{-3mm}
+\end{table*}

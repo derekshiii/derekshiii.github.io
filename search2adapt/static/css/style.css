@@ -1,0 +1,193 @@
+/* Custom styles for Search2Adapt project page */
+
+/* Typography */
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem 0;
+}
+
+.hero .title {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-title {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+/* Author styling */
+.publication-authors {
+  margin-top: 0.5rem;
+}
+
+.author-block {
+  margin-right: 0.3rem;
+}
+
+.author-block a {
+  color: white;
+  text-decoration: underline;
+}
+
+.author-block a:hover {
+  color: #ffd700;
+}
+
+/* Venue tags */
+.publication-venue {
+  margin-top: 0.5rem;
+}
+
+.publication-venue .tag {
+  margin: 0.2rem;
+}
+
+/* Links */
+.publication-links {
+  margin-top: 1rem;
+}
+
+.link-block {
+  margin: 0 0.3rem;
+}
+
+.link-block .button {
+  background-color: rgba(255,255,255,0.2);
+  border-color: white;
+  color: white;
+}
+
+.link-block .button:hover {
+  background-color: white;
+  color: #667eea;
+}
+
+/* Section styling */
+.section {
+  padding: 2rem 1.5rem;
+}
+
+.section-title {
+  color: #363636;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Highlight cards */
+.highlight-card {
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+/* Method figure */
+.method-figure {
+  text-align: center;
+}
+
+.method-figure img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.figure-caption {
+  margin-top: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Equation box */
+.equation-box {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  border-left: 4px solid #667eea;
+}
+
+/* Tables */
+.result-table {
+  font-size: 0.95rem;
+}
+
+.result-table th {
+  background-color: #667eea;
+  color: white;
+  text-align: center;
+}
+
+.result-table td {
+  vertical-align: middle;
+}
+
+.ours-row {
+  background-color: #e8f4f8 !important;
+}
+
+.ours-row td {
+  font-weight: bold;
+}
+
+/* BibTeX box */
+.bibtex-box {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-left: 4px solid #667eea;
+}
+
+/* Placeholder box */
+.placeholder-box {
+  background: #f0f0f0;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #999;
+  border-radius: 8px;
+  border: 2px dashed #ccc;
+}
+
+.placeholder-box p {
+  margin: 0.5rem 0;
+}
+
+/* Footer */
+.footer {
+  background-color: #f5f5f5;
+  padding: 1.5rem 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .hero .title {
+    font-size: 1.5rem;
+  }
+
+  .highlight-cards .column {
+    margin-bottom: 1rem;
+  }
+}

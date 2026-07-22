@@ -1,0 +1,69 @@
+\begin{table*}[tbp]
+\centering
+\caption{DICE $\uparrow$ (\%, mean $\pm$ std) and ASD $\downarrow$ (mm, mean $\pm$ std) of domain adaptation results on brain targets.}
+\label{tab:BraTS}
+\vspace{-2mm}
+\resizebox{2\columnwidth}{!}{%
+\renewcommand{\arraystretch}{0.9}  % 减小行距
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}c@{\hspace{0.3cm}} cccccccc cccccccc@{}}
+\toprule
+\multirow{3}{*}{\textbf{Methods}} & \multicolumn{8}{c}{\textbf{T1n$\rightarrow$T2w}} & \multicolumn{8}{c}{\textbf{T2w$\rightarrow$T1n}} \\
+\cmidrule(lr){2-9} \cmidrule(lr){10-17}
+& \multicolumn{4}{c}{\textbf{DICE}} & \multicolumn{4}{c}{\textbf{ASD}} & \multicolumn{4}{c}{\textbf{DICE}} & \multicolumn{4}{c}{\textbf{ASD}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(lr){14-17}
+& \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} \\ 
+\midrule
+
+No Adaptation & 19.7$\pm$29.1 & 7.5$\pm$7.4 & 4.7$\pm$5.6 & 30.0$\pm$24.9 & 40.6$\pm$17.8 &21.2$\pm$8.6 & 40.2$\pm$18.8 & 58.9$\pm$25.7 & 4.6$\pm$4.8 & 13.9$\pm$10.5 & 3.2$\pm$4.9 & 25.9$\pm$38.1 & 48.4$\pm$22.9 & 19.4$\pm$7.6 & 38.1$\pm$15.9 & 57.1$\pm$20.6 \\
+
+Supervised & 61.9$\pm$20.8 & 84.3$\pm$7.3 & 68.0$\pm$14.8 & 86.6$\pm$10.9 & 2.9$\pm$5.1 & 1.3$\pm$0.5 & 1.8$\pm$1.9 & 1.0$\pm$3.0 &62.8$\pm$20.7 &83.6$\pm$6.7& 71.6$\pm$14.9& 83.9$\pm$14.3&2.3$\pm$2.5 & 1.4$\pm$0.6 & 1.8$\pm$2.4 &1.2$\pm$2.9 \\  \midrule
+
+UPL \cite{upl} & \textcolor{red}{\textbf{47.2$\pm$23.4}} & \textcolor{blue}{\textbf{36.9$\pm$22.5}} & \textcolor{red}{\textbf{61.7$\pm$48.6}} & 46.7$\pm$23.5 & 33.6$\pm$22.8 & \textcolor{blue}{\textbf{33.5$\pm$20.8}} & \textcolor{blue}{\textbf{6.8$\pm$6.1}} & \textcolor{blue}{\textbf{29.5$\pm$23.1}} & \textcolor{red}{\textbf{46.5$\pm$34.1}} & 10.7$\pm$12.1 & \textcolor{red}{\textbf{60.3$\pm$48.9}} & \textcolor{blue}{\textbf{38.7$\pm$24.6}} & \textcolor{blue}{\textbf{16.5$\pm$12.8}} & {56.9$\pm$22.1} & \textcolor{blue}{\textbf{23.2$\pm$14.3}} & \textcolor{blue}{\textbf{22.9$\pm$17.0}}\\
+
+ProtoContra \cite{protocontra} & 0.7$\pm$2.3 & 4.9$\pm$12.3 & 6.1$\pm$1.9 & 15.9$\pm$17.8 & \textcolor{blue}{\textbf{19.7$\pm$14.3}} & 52.2$\pm$16.4 & 30.6$\pm$5.6 & {35.0$\pm$16.8} & 0.7$\pm$1.6 & 11.6$\pm$15.1 & 0.4$\pm$3.6 & 0.7$\pm$0.6 & {55.8$\pm$17.5} & 61.4$\pm$22.7 & 36.2$\pm$21.7 & 52.7$\pm$31.6 \\
+
+IAPC \cite{IAPC} & 0.4$\pm$2.3 & {7.2$\pm$10.3} & 2.6$\pm$7.5 & 2.6$\pm$8.2 & 75.7$\pm$42.8 & {72.2$\pm$50.4} & 71.6$\pm$48.3 & 68.7$\pm$44.3 & 0.7$\pm$3.4 & {7.1$\pm$11.1} & 2.2$\pm$6.8 & 3.5$\pm$10.3 & 71.9$\pm$35.7 & 74.3$\pm$52.9 & 66.7$\pm$40.8 & 60.5$\pm$35.2 \\
+
+$\diamondsuit$ DFG \cite{DFG} & {1.3$\pm$1.9} & 3.6$\pm$8.2 & 5.1$\pm$3.8 & 1.6$\pm$7.7 & {50.7$\pm$29.6} & 67.3$\pm$20.5 & {60.7$\pm$23.5} & 53.2$\pm$21.1 & {0.8$\pm$0.6} & 7.6$\pm$14.3 & {4.2$\pm$2.3} & {1.6$\pm$1.2} & 53.9$\pm$22.8 & 63.2$\pm$23.3 & {59.4$\pm$28.2} & {65.7$\pm$22.7} \\
+
+$\diamondsuit$ IPLC \cite{iplc} & 17.8$\pm$3.6 & 20.5$\pm$5.2 & 29.3$\pm$11.2 & \textcolor{blue}{\textbf{52.8$\pm$9.1}} & 27.0$\pm$14.8 & 48.1$\pm$36.3 & 38.1$\pm$16.4 & 53.0$\pm$19.8 & 25.7$\pm$16.8 & \textcolor{blue}{\textbf{30.0$\pm$12.3}} & 39.7$\pm$32.9 & 16.2$\pm$17.4 & 47.2$\pm$46.1 & 36.7$\pm$23.2 & 36.3$\pm$17.6 & 45.4$\pm$17.7 \\ 
+
+$\diamondsuit$ SRPL \cite{SRPL}  & 0.0$\pm$0.0 & 13.3$\pm$13.3 & 10.7$\pm$12.2 & 3.3$\pm$3.3 & 63.2$\pm$33.2 & 35.2$\pm$24.1 & 73.3$\pm$34.5 & 55.4$\pm$22.1 & 8.4$\pm$13.5 & 9.2$\pm$7.7 & 9.9$\pm$10.7 & 2.5$\pm$2.3 & 70.8$\pm$30.0 & \textcolor{blue}{\textbf{25.9$\pm$9.8}} & 50.7$\pm$24.4 & 51.3$\pm$13.8\\ \midrule
+
+\textbf{$\diamondsuit$ Ours} & \textcolor{blue}{\textbf{38.7$\pm$23.5}} & \textcolor{red}{\textbf{77.3$\pm$11.3}} & \textcolor{blue}{\textbf{45.3$\pm$23.6}} & \textcolor{red}{\textbf{77.2$\pm$18.7}}& \textcolor{red}{\textbf{6.7$\pm$9.7}} & \textcolor{red}{\textbf{1.8$\pm$1.2}}& \textcolor{red}{\textbf{6.0$\pm$10.0}} & \textcolor{red}{\textbf{2.5$\pm$5.0}} & \textcolor{blue}{\textbf{39.4$\pm$26.0}} & \textcolor{red}{\textbf{74.7$\pm$14.3}} & \textcolor{blue}{\textbf{46.8$\pm$22.2}} & \textcolor{red}{\textbf{76.5$\pm$21.1}} & \textcolor{red}{\textbf{5.4$\pm$6.5}} & \textcolor{red}{\textbf{2.1$\pm$2.0}} & \textcolor{red}{\textbf{4.5$\pm$6.7}} & \textcolor{red}{\textbf{2.6$\pm$5.7}} \\ 
+
+
+\midrule
+\midrule
+
+\multirow{3}{*}{\textbf{Methods}} & \multicolumn{8}{c}{\textbf{T1c$\rightarrow$T2f}} & \multicolumn{8}{c}{\textbf{T2f$\rightarrow$T1c}} \\
+\cmidrule(lr){2-9} \cmidrule(lr){10-17}
+& \multicolumn{4}{c}{\textbf{DICE}} & \multicolumn{4}{c}{\textbf{ASD}} & \multicolumn{4}{c}{\textbf{DICE}} & \multicolumn{4}{c}{\textbf{ASD}} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(lr){14-17}
+& \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} & \textbf{TC} & \textbf{SNFH} & \textbf{ET} & \textbf{RC} \\ 
+\midrule
+
+No Adaptation & 4.8$\pm$5.7 & 1.3$\pm$1.4 & 14.2$\pm$15.1 & 49.3$\pm$33.5 & 39.9$\pm$30.7 & 22.7$\pm$7.9 &33.8$\pm$19.2 & 26.3$\pm$26.9 & 18.8$\pm$19.9 & 2.1$\pm$3.6 & 42.7$\pm$25.7 & 54.0$\pm$33.1 & 10.8$\pm$13.9 & 23.8$\pm$18.4 & 6.4$\pm$7.7 & 11.6$\pm$19.6 \\
+
+Supervised & 63.1$\pm$20.2 & 90.3$\pm$5.6 &66.6$\pm$15.2 &83.7$\pm$11.4&2.5$\pm$2.5& 0.97$\pm$0.4& 2.2$\pm$2.7 &1.0$\pm$0.7& 82.4$\pm$15.3 & 83.6$\pm$6.9& 84.8$\pm$12.5&85.3$\pm$14.1 & 1.4$\pm$5.0& 1.4$\pm$0.5&0.8$\pm$0.9 &1.0$\pm$1.5 \\ \midrule
+
+UPL \cite{upl} &\textcolor{blue}{\textbf{25.0$\pm$22.0}} &46.6$\pm$19.4 &22.6$\pm$16.3 &\textcolor{blue}{\textbf{55.9$\pm$30.2}}& \textcolor{blue}{\textbf{32.9$\pm$22.5}} & {26.1$\pm$23.8} &36.9$\pm$24.0 &29.7$\pm$26.6 & \textcolor{blue}{\textbf{43.4$\pm$27.1}} & 15.6$\pm$15.6 & \textcolor{blue}{\textbf{44.6$\pm$26.1}} & \textcolor{blue}{\textbf{53.7$\pm$29.1}} & \textcolor{blue}{\textbf{28.6$\pm$25.5}} & 46.2$\pm$22.2 & \textcolor{blue}{\textbf{27.6$\pm$23.9}} & \textcolor{blue}{\textbf{29.7$\pm$26.8}} \\
+
+ProtoContra \cite{protocontra} & {0.1$\pm$1.3} & \textcolor{blue}{\textbf{58.4$\pm$27.5}} & 12.1$\pm$5.6 & 14.4$\pm$25.5 & {51.5$\pm$27.6}& \textcolor{blue}{\textbf{18.0$\pm$19.8}} & 38.0$\pm$21.4 & \textcolor{blue}{\textbf{25.8$\pm$20.5}} & 2.6$\pm$9.8 & 15.5$\pm$17.9 & 11.6$\pm$21.1 & 13.0$\pm$26.0 &{53.1$\pm$24.4} & 50.0$\pm$24.8 & 47.8$\pm$25.4 & 34.1$\pm$27.4 \\
+
+IAPC \cite{IAPC} & 1.0$\pm$4.6 & 6.9$\pm$10.5 & 2.3$\pm$7.5 & 29.4$\pm$9.2 & 69.1$\pm$35.7 & 68.8$\pm$48.2 & 59.7$\pm$35.4 & 62.1$\pm$37.6 & 13.2$\pm$5.0 & 6.7$\pm$11.1 & 4.2$\pm$8.9 & 3.8$\pm$10.0 & 65.6$\pm$32.6 & 77.5$\pm$58.3 & 64.9$\pm$43.3 & 80.6$\pm$60.1 \\
+
+$\diamondsuit$ DFG \cite{DFG} & {0.2$\pm$3.2} & 9.2$\pm$12.5 & {6.6$\pm$3.1} & {4.3$\pm$12.9} & {65.0$\pm$20.2} & 49.1$\pm$22.0 & {58.6$\pm$24.5} & {50.7$\pm$27.1} & {1.3$\pm$1.8} & {3.6$\pm$8.2} & {5.1$\pm$3.1} & {1.6$\pm$7.7} & {50.7$\pm$29.6} & 67.3$\pm$20.5 & {60.7$\pm$23.5} & 53.2$\pm$21.0 \\
+
+$\diamondsuit$ IPLC \cite{iplc} & 17.6$\pm$8.3 & 42.8$\pm$15.6 & \textcolor{red}{\textbf{39.9$\pm$6.1}} & 28.7$\pm$13.2 & 55.1$\pm$33.4 & 48.2$\pm$42.9 & 34.6$\pm$33.9 & 27.2$\pm$16.1 & 29.6$\pm$24.4 & \textcolor{blue}{\textbf{39.9$\pm$18.1}} & 13.7$\pm$7.4 & 44.8$\pm$18.6 & 43.9$\pm$28.1 & \textcolor{blue}{\textbf{19.2$\pm$8.4}} & 59.4$\pm$47.0 & 33.0$\pm$19.9 \\
+
+$\diamondsuit$ SRPL \cite{SRPL} & 15.9$\pm$18.2 & 3.8$\pm$4.1 & 23.3$\pm$18.6 & 5.5$\pm$8.2 & 40.2$\pm$35.1 & 30.6$\pm$12.5 & \textcolor{blue}{\textbf{34.5$\pm$30.9}} & 30.2$\pm$24.3 & 24.1$\pm$20.7 & 7.4$\pm$7.0 & 22.3$\pm$20.2 & 6.5$\pm$8.0 & 36.4$\pm$46.0 & 27.7$\pm$12.3 & 45.0$\pm$37.5 & 39.0$\pm$21.5 \\ \midrule
+
+\textbf{$\diamondsuit$ Ours} & \textcolor{red}{\textbf{36.1$\pm$25.6}} & \textcolor{red}{\textbf{82.4$\pm$10.5}} & \textcolor{blue}{\textbf{40.8$\pm$24.0}} & \textcolor{red}{\textbf{72.1$\pm$24.3}}   &\textcolor{red}{\textbf{8.4$\pm$8.8}} & \textcolor{red}{\textbf{1.4$\pm$0.7}} & \textcolor{red}{\textbf{5.2$\pm$6.6}} & \textcolor{red}{\textbf{2.4$\pm$5.4}} & \textcolor{red}{\textbf{62.4$\pm$25.7}} & \textcolor{red}{\textbf{76.2$\pm$11.7}} & \textcolor{red}{\textbf{73.0$\pm$20.1}} & \textcolor{red}{\textbf{76.4$\pm$20.9}} & \textcolor{red}{\textbf{3.9$\pm$8.4}} & \textcolor{red}{\textbf{2.0$\pm$1.4}} & \textcolor{red}{\textbf{1.7$\pm$2.5}} & \textcolor{red}{\textbf{2.6$\pm$6.4}} \\ 
+
+\bottomrule
+\end{tabular}%
+}
+\vspace{-3mm}
+\end{table*}
