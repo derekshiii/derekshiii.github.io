@@ -181,14 +181,18 @@ permalink: /
   <li>
     <div style="float:left; text-align:left"><strong>M.S. in Biomedical Engineering</strong></div>
     <div style="float:right; text-align:right">2024 – Present</div><br />
-    <a href="http://www.neu.edu.cn/">Northeastern University</a><br />
-    Shenyang, China
+    <div style="display:flex; justify-content:space-between;">
+      <span><a href="http://www.neu.edu.cn/">Northeastern University</a></span>
+      <span>Shenyang, China</span>
+    </div>
   </li>
   <li>
     <div style="float:left; text-align:left"><strong>B.Eng. in Measurement and Control Technology and Instruments</strong></div>
     <div style="float:right; text-align:right">2020 – 2024</div><br />
-    <a href="https://www.guet.edu.cn/">Guilin University of Electronic Technology</a><br />
-    Guilin, China
+    <div style="display:flex; justify-content:space-between;">
+      <span><a href="https://www.guet.edu.cn/">Guilin University of Electronic Technology</a></span>
+      <span>Guilin, China</span>
+    </div>
   </li>
 </ul>
 
