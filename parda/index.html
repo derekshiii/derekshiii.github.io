@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation</title>
+  <meta name="description" content="PARDA reformulates SFUDA as a closed-loop agentic paradigm driven by autonomous perception, action, reflection, and distillation for medical image segmentation.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="highlight-title">PARDA</span>: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation
+            </h1>
+
+            <!-- Authors -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://derekshiii.github.io/" target="_blank"><strong>Yulong Shi</strong></a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Shijie Li<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Ziyi Li<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Lin Qi<sup>1,*</sup>,
+              </span>
+              <span class="author-block">
+                Shouliang Qi<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Ting Liu<sup>2</sup>,
+              </span>
+              <span class="author-block">
+                Wei Qian<sup>1</sup>
+              </span>
+            </div>
+
+            <!-- Affiliations -->
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>Northeastern University, Shenyang, China</span> &nbsp;&nbsp;
+              <span class="author-block"><sup>2</sup>The First Hospital of China Medical University</span>
+            </div>
+
+            <!-- Venue -->
+            <div class="publication-venue" style="margin-top: 0.8rem;">
+              <span class="tag is-warning is-medium"><b>IEEE Transactions on Medical Imaging (TMI)</b></span>
+            </div>
+
+            <!-- Links -->
+            <div class="publication-links" style="margin-top: 1.2rem;">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/" target="_blank" class="button is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/derekshiii/PARDA-SFUDA-Agent" target="_blank" class="button is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 section-title">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Source-Free Unsupervised Domain Adaptation (SFUDA) has emerged as a critical paradigm for addressing severe domain shifts in medical image segmentation under strict data privacy constraints, where source data are inaccessible. However, existing SFUDA methods primarily rely on static, open-loop adaptation pipelines, lacking the ability to actively perceive target domain characteristics and self-reflect to correct accumulated errors. Meanwhile, Vision Foundation Models (VFMs) and Vision Language Models (VLMs) exhibit strong generalization across modalities and anatomies, yet their high computational inference overhead and deployment constraints prevent direct adoption on clinical edge devices. In this work, we propose <b>PARDA</b>, a <b>P</b>erceive-<b>A</b>ct-<b>R</b>eflect-<b>D</b>istill <b>A</b>gent for SFUDA in medical image segmentation. PARDA reformulates SFUDA as a closed-loop decision-making process, in which the agent actively perceives target domain characteristics, acts by coordinating semantic and geometric VFMs to generate pseudo-labels, reflects on the reliability of its anatomical and structural representations to guide refinement, and finally distills the acquired adaptation knowledge into a lightweight student model. We conduct the most comprehensive SFUDA evaluation to date, covering <b>13 cross-modality domain adaptation directions</b> and <b>24 anatomy targets</b> across diverse organs and imaging modalities. Experimental results demonstrate that PARDA consistently outperforms SOTA SFUDA methods, achieving robust and universal domain adaptation while maintaining a lightweight model for real-world clinical deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motivation Figure -->
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Motivation & Overview</h2>
+      <div class="columns is-centered">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure1_Motivation.png" alt="PARDA Motivation and Overview">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Motivation and overview of PARDA.</b>
+              (a) Severe domain shifts across clinical imaging modalities.
+              (b) Data isolation caused by privacy regulations and transmission constraints.
+              (c) Practical deployment constraints of VLM and VFM.
+              (d) Overview of the PARDA's workflow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Method</h2>
+
+      <!-- Highlight Cards -->
+      <div class="columns is-centered highlight-cards">
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-eye"></i></div>
+              <p class="title is-5">Perception</p>
+              <p class="content is-size-6">
+                Actively characterizes target domain properties and dynamically plans appropriate pseudo-labeling strategies, enabling domain-aware adaptation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-cogs"></i></div>
+              <p class="title is-5">Action</p>
+              <p class="content is-size-6">
+                Coordinates semantic (BiomedParse) and geometric (SAM3) VFMs through a dual-expert strategy to generate high-quality pseudo-labels.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-search"></i></div>
+              <p class="title is-5">Reflection</p>
+              <p class="content is-size-6">
+                VLM-driven semantic quality assessment that examines predictions, identifies unreliable pseudo-labels, and triggers targeted refinement.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+              <p class="title is-5">Distillation</p>
+              <p class="content is-size-6">
+                Transfers the agent's adaptation knowledge into a lightweight student model for efficient clinical edge device deployment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detail Figure -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure3_Detail_Illustration.png" alt="PARDA Detail">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Detailed illustration of PARDA.</b>
+              (a) The agent autonomously performs Perception, Action, and Reflection to obtain reliable pseudo-labels, followed by knowledge distillation into a lightweight model.
+              (b) Perception criteria for characterizing target domain conditions.
+              (c) Reflection criteria for semantic quality assessment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features -->
+  <section class="section" id="features">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Key Features</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <h3 class="title is-4">Perception-Guided Dual-Expert Action</h3>
+            <p>
+              PARDA tightly couples Perception with Action. The agent analyzes target domain characteristics (contrast, noise, difficulty) and dynamically selects strategies:
+            </p>
+            <ul>
+              <li><b>Single-expert</b> — For simple scenarios, BiomedParse directly generates pseudo-labels</li>
+              <li><b>Dual-expert</b> — For challenging scenarios, BiomedParse proposes semantics + SAM3 refines geometry</li>
+            </ul>
+            <div class="equation-box" style="margin-top: 1rem;">
+              <code>ŷ = ŷ<sub>geo</sub> ∪ ŷ<sub>sem</sub> (if consensus C=1), else ŷ = ŷ<sub>sem</sub></code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered" style="margin-top: 1.5rem;">
+        <div class="column is-8">
+          <div class="content">
+            <h3 class="title is-4">Reflection-Driven State-Dependent Refinement</h3>
+            <p>
+              The VLM assesses pseudo-label quality through multi-dimensional reasoning:
+            </p>
+            <ul>
+              <li><b>Anatomical plausibility</b> — Whether the prediction matches known anatomy</li>
+              <li><b>Boundary precision</b> — Quality of segmentation boundaries</li>
+              <li><b>Morphological consistency</b> — Shape and structural coherence</li>
+              <li><b>False positive detection</b> — Identifying spurious predictions</li>
+            </ul>
+            <p style="margin-top: 0.5rem;">
+              When rejected, adaptive repair tools are selected: <span class="tag is-light">T<sub>zoom</sub></span> <span class="tag is-light">T<sub>clahe</sub></span> <span class="tag is-light">T<sub>topo</sub></span> <span class="tag is-light">T<sub>sym</sub></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Results</h2>
+
+      <!-- Radar Figure -->
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="method-figure">
+            <img src="static/images/Figure2_Radar.png" alt="PARDA Generalization Radar">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Generalization performance of PARDA</b> across 13 adaptation directions and 24 targets. The outermost ring indicates adaptation directions, while the middle and innermost rings report per-target DICE and ASD.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Highlight Cards -->
+      <div class="columns is-centered highlight-cards" style="margin-top: 2rem;">
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-trophy"></i></div>
+              <p class="title is-5">87.2%</p>
+              <p class="content is-size-6">
+                Mean Dice on AMOS (MR→CT), approaching supervised performance (88.4%).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-heartbeat"></i></div>
+              <p class="title is-5">94.3%</p>
+              <p class="content is-size-6">
+                Dice on cardiac LV (MR→US), matching supervised level under extreme domain shift.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-brain"></i></div>
+              <p class="title is-5">83.7%</p>
+              <p class="content is-size-6">
+                Dice on brain NEFH (T1c→T2f), closely approaching supervised performance.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="card highlight-card">
+            <div class="card-content">
+              <div class="card-icon"><i class="fas fa-globe"></i></div>
+              <p class="title is-5">13 Directions</p>
+              <p class="content is-size-6">
+                Most comprehensive SFUDA evaluation: 13 directions, 24 targets, 7 datasets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AMOS Table -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <h3 class="title is-4">Abdominal Segmentation (AMOS MR→CT)</h3>
+          <p class="is-size-6" style="margin-bottom: 0.8rem; color: #666;">
+            Dice scores (%) on 15 abdominal organs. Best results in <b>bold</b>.
+          </p>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>VFM</th>
+                  <th>Spleen</th>
+                  <th>R.Kidney</th>
+                  <th>L.Kidney</th>
+                  <th>Liver</th>
+                  <th>Stom.</th>
+                  <th>Pancr.</th>
+                  <th>V.Cava</th>
+                  <th>Bladder</th>
+                  <th>Mean</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>✗</td>
+                  <td>65.1</td><td>71.2</td><td>63.2</td><td>82.2</td><td>46.9</td><td>55.7</td><td>61.7</td><td>0.0</td><td>47.4</td>
+                </tr>
+                <tr>
+                  <td>Supervised</td>
+                  <td>✗</td>
+                  <td>97.2</td><td>96.4</td><td>94.7</td><td>97.6</td><td>93.1</td><td>83.7</td><td>90.2</td><td>83.3</td><td>88.4</td>
+                </tr>
+                <tr>
+                  <td>ProtoContra</td>
+                  <td>✗</td>
+                  <td>5.6</td><td>11.9</td><td>7.3</td><td>40.1</td><td>25.1</td><td>39.1</td><td>29.2</td><td>0.0</td><td>17.1</td>
+                </tr>
+                <tr>
+                  <td>◇ SRPL</td>
+                  <td>✓</td>
+                  <td>0.0</td><td>0.0</td><td>0.0</td><td>47.6</td><td>42.2</td><td>46.6</td><td>26.2</td><td>0.0</td><td>19.9</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>◇ PARDA</b></td>
+                  <td>✓</td>
+                  <td><b>96.7</b></td><td><b>95.5</b></td><td><b>93.6</b></td><td><b>97.3</b></td><td><b>91.3</b></td><td><b>82.1</b></td><td><b>89.5</b></td><td><b>83.0</b></td><td><b>87.2</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">◇ denotes VFM-coupled methods. PARDA achieves 87.2% mean Dice, substantially outperforming all baselines and approaching supervised performance.</p>
+        </div>
+      </div>
+
+      <!-- Cardiac Table -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-10">
+          <h3 class="title is-4">Cardiac Segmentation (Cross-Modality)</h3>
+          <p class="is-size-6" style="margin-bottom: 0.8rem; color: #666;">
+            Dice (%) and ASD (mm) on cross-modality cardiac targets.
+          </p>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="4">MR→US</th>
+                  <th colspan="4">US→MR</th>
+                </tr>
+                <tr>
+                  <th>LV</th><th>MYO</th><th>LV<sub>ASD</sub></th><th>MYO<sub>ASD</sub></th>
+                  <th>LV</th><th>MYO</th><th>LV<sub>ASD</sub></th><th>MYO<sub>ASD</sub></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>1.7</td><td>3.1</td><td>56.2</td><td>66.9</td>
+                  <td>3.2</td><td>1.8</td><td>60.5</td><td>56.8</td>
+                </tr>
+                <tr>
+                  <td>Supervised</td>
+                  <td>94.4</td><td>88.1</td><td>3.2</td><td>4.1</td>
+                  <td>95.8</td><td>91.2</td><td>0.3</td><td>0.3</td>
+                </tr>
+                <tr>
+                  <td>AdaMI</td>
+                  <td>49.1</td><td>29.1</td><td>55.1</td><td>46.4</td>
+                  <td>3.4</td><td>4.5</td><td>64.7</td><td>67.6</td>
+                </tr>
+                <tr>
+                  <td>◇ SRPL</td>
+                  <td>0.7</td><td>0.9</td><td>83.1</td><td>79.8</td>
+                  <td>8.5</td><td>9.1</td><td>30.1</td><td>45.9</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>◇ PARDA</b></td>
+                  <td><b>94.3</b></td><td><b>88.2</b></td><td><b>2.2</b></td><td><b>2.9</b></td>
+                  <td><b>95.3</b></td><td><b>90.0</b></td><td><b>0.2</b></td><td><b>0.3</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">PARDA achieves near-supervised performance in extremely challenging cross-modality cardiac settings.</p>
+        </div>
+      </div>
+
+      <!-- Qualitative Results -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <h3 class="title is-4 has-text-centered">Qualitative Results</h3>
+          <div class="method-figure">
+            <img src="static/images/Figure4_Example_Result.png" alt="Qualitative Results">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Qualitative results</b> demonstrate strong generalization across diverse domain adaptation directions. Rows 1-2: abdominal targets; Row 3: cardiac, polyp, and brain targets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fundus Results -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-12">
+          <div class="method-figure">
+            <img src="static/images/Figure5_Fundus_Visualization.png" alt="Fundus Results">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Fundus qualitative results</b> with RIGA as source domain and BASE1, BASE2, BASE3 as target domains. PARDA produces more accurate and consistent delineation of both OD and OC.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ablation Studies -->
+  <section class="section" id="ablation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title has-text-centered">Ablation Studies</h2>
+
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <h3 class="title is-5">Component Analysis (AMOS)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth result-table ablation-table">
+              <thead>
+                <tr>
+                  <th>Variant</th>
+                  <th colspan="2">MR→CT</th>
+                  <th colspan="2">CT→MR</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th>mDICE</th><th>mASD</th>
+                  <th>mDICE</th><th>mASD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No Adaptation</td>
+                  <td>47.4</td><td>—</td>
+                  <td>64.3</td><td>—</td>
+                </tr>
+                <tr>
+                  <td>PARDA w/o Perception</td>
+                  <td>82.1</td><td>2.0</td>
+                  <td>78.1</td><td>2.1</td>
+                </tr>
+                <tr>
+                  <td>PARDA w/o Reflection</td>
+                  <td>78.6</td><td>2.3</td>
+                  <td>75.6</td><td>2.5</td>
+                </tr>
+                <tr>
+                  <td>PARDA w/ Gemini-3-Flash</td>
+                  <td>80.7</td><td>1.9</td>
+                  <td>83.3</td><td>1.7</td>
+                </tr>
+                <tr>
+                  <td>PARDA w/ GPT-5.2</td>
+                  <td>86.0</td><td>1.6</td>
+                  <td>83.7</td><td>1.6</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><b>PARDA (Qwen3-VL-32B)</b></td>
+                  <td><b>87.2</b></td><td><b>1.5</b></td>
+                  <td><b>83.4</b></td><td><b>1.6</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="is-size-6 figure-caption">Both Perception and Reflection are essential. The open-source Qwen3-VL-32B achieves comparable performance to GPT-5.2.</p>
+        </div>
+      </div>
+
+      <!-- Sankey Diagram -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-10">
+          <div class="method-figure">
+            <img src="static/images/Figure6_Sankey_diagram.png" alt="Failure Analysis">
+            <p class="has-text-centered is-size-6 figure-caption">
+              <b>Failure analysis of previous SFUDA methods.</b> The Sankey diagram illustrates how poor pseudo-label quality and training instability propagate through the adaptation pipeline.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 section-title">BibTeX</h2>
+      <pre class="bibtex-box"><code>@article{shi2026parda,
+  title={PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation},
+  author={Shi, Yulong and Li, Shijie and Li, Ziyi and Qi, Lin and Qi, Shouliang and Liu, Ting and Qian, Wei},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          This website template is adapted from <a href="https://nerfies.github.io" target="_blank">Nerfies</a>,
+          licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
