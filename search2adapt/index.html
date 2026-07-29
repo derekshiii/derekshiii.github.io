@@ -22,6 +22,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
   <link rel="stylesheet" href="static/css/style.css">
+
+  <!-- MathJax for LaTeX rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 
 <body>
@@ -175,7 +186,7 @@
               Our <b>Collaborative Action Value Function (CAVF)</b> extends UCT with a diversity bonus to prevent premature convergence:
             </p>
             <div class="equation-box">
-              <code>CAVF(s<sub>i</sub>) = V(s<sub>i</sub>) + w·√(ln N<sub>parent</sub>/N<sub>i</sub>) + λ/√(count(tool<sub>sig</sub><sub>i</sub>))</code>
+              $$\text{CAVF}(s_i) = V(s_i) + w\sqrt{\frac{\ln N_{\text{parent}}}{N_i}} + \frac{\lambda}{\sqrt{\text{count}(\text{tool}_{\text{sig}_i})}}$$
             </div>
             <p style="margin-top: 0.5rem;">
               <span class="tag is-light">Exploitation</span>
