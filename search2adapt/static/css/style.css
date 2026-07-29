@@ -72,6 +72,7 @@ body {
 /* Section styling */
 .section {
   padding: 2rem 1.5rem;
+  background-color: white;
 }
 
 .section-title {
@@ -109,6 +110,7 @@ body {
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: white;
 }
 
 .figure-caption {
@@ -140,6 +142,11 @@ body {
 
 .result-table td {
   vertical-align: middle;
+}
+
+.result-table td:first-child {
+  min-width: 140px;
+  white-space: nowrap;
 }
 
 .ours-row {
