@@ -39,22 +39,22 @@
             <!-- Authors -->
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://derekshiii.github.io/" target="_blank"><strong>Yulong Shi</strong></a><sup>1</sup>,
+                <a href="https://derekshiii.github.io/" target="_blank"><strong>Yulong Shi</strong></a>,
               </span>
               <span class="author-block">
-                Wenwen Zhang<sup>1</sup>,
+                Wenwen Zhang,
               </span>
               <span class="author-block">
-                Ziyi Li<sup>1</sup>,
+                Ziyi Li,
               </span>
               <span class="author-block">
-                Lin Qi<sup>1</sup>
+                Lin Qi<sup>*</sup>
               </span>
             </div>
 
             <!-- Affiliations -->
             <div class="is-size-6 publication-authors">
-              <span class="author-block"><sup>1</sup>Northeastern University, Shenyang, China</span>
+              <span class="author-block">Northeastern University, Shenyang, China</span>
             </div>
 
             <!-- Links -->
@@ -289,14 +289,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>No Adaptation</td>
-                  <td>65.1</td><td>71.2</td><td>63.2</td><td>27.2</td><td>42.2</td><td>82.2</td><td>46.9</td><td>72.0</td><td>61.7</td><td>55.7</td><td>39.7</td><td>44.7</td><td>38.5</td><td>0.0</td><td>0.0</td><td>47.4</td>
-                </tr>
-                <tr>
-                  <td>Supervised</td>
-                  <td>97.2</td><td>96.4</td><td>94.7</td><td>86.0</td><td>84.1</td><td>97.6</td><td>93.1</td><td>95.3</td><td>90.2</td><td>83.7</td><td>77.8</td><td>78.9</td><td>81.6</td><td>83.3</td><td>85.5</td><td>88.4</td>
-                </tr>
-                <tr>
                   <td>UPL</td>
                   <td>23.9</td><td>7.7</td><td>30.2</td><td>0.0</td><td>12.5</td><td>23.6</td><td>10.7</td><td>9.3</td><td>0.7</td><td>8.6</td><td>0.0</td><td>0.0</td><td>2.0</td><td>0.0</td><td>0.0</td><td>8.6</td>
                 </tr>
@@ -327,7 +319,6 @@
               </tbody>
             </table>
           </div>
-          <p class="is-size-6 figure-caption">◇ denotes VFM-coupled methods. Our method achieves 82.7% mean Dice, substantially outperforming all baselines.</p>
         </div>
       </div>
 
@@ -369,18 +360,6 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>No Adaptation</td>
-                  <td>1.7</td><td>3.1</td><td>56.2</td><td>66.9</td>
-                  <td>3.2</td><td>1.8</td><td>60.5</td><td>56.8</td>
-                  <td>65.1</td><td>5.8</td><td>60.2</td><td>23.7</td>
-                </tr>
-                <tr>
-                  <td>Supervised</td>
-                  <td>94.4</td><td>88.1</td><td>3.2</td><td>4.1</td>
-                  <td>95.8</td><td>91.2</td><td>0.3</td><td>0.3</td>
-                  <td>99.8</td><td>0.4</td><td>97.4</td><td>0.9</td>
-                </tr>
                 <tr>
                   <td>UPL</td>
                   <td>2.8</td><td>0.0</td><td>90.5</td><td>N/A</td>
@@ -426,7 +405,6 @@
               </tbody>
             </table>
           </div>
-          <p class="is-size-6 figure-caption">Our method achieves strong performance in extremely challenging cross-modality cardiac settings.</p>
         </div>
       </div>
 
@@ -453,16 +431,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>No Adaptation</td>
-                  <td>83.5</td><td>72.6</td><td>79.5</td><td>73.7</td><td>82.8</td><td>78.2</td>
-                  <td>7.2</td><td>13.9</td><td>5.8</td><td>9.2</td><td>10.7</td><td>10.1</td>
-                </tr>
-                <tr>
-                  <td>Supervised</td>
-                  <td>94.5</td><td>91.6</td><td>93.7</td><td>92.1</td><td>94.2</td><td>92.8</td>
-                  <td>3.6</td><td>4.7</td><td>3.4</td><td>4.4</td><td>3.2</td><td>4.2</td>
-                </tr>
-                <tr>
                   <td>◇ SRPL</td>
                   <td>90.5</td><td>86.3</td><td>88.7</td><td>87.7</td><td>89.6</td><td>89.9</td>
                   <td>5.9</td><td>6.7</td><td>6.0</td><td>7.0</td><td>5.9</td><td>5.7</td>
@@ -475,7 +443,6 @@
               </tbody>
             </table>
           </div>
-          <p class="is-size-6 figure-caption">Our method achieves competitive performance on fundus segmentation across all target domains.</p>
         </div>
       </div>
 
@@ -541,7 +508,6 @@
               </tbody>
             </table>
           </div>
-          <p class="is-size-6 figure-caption">All components contribute to the final performance. Removing any component degrades results.</p>
         </div>
       </div>
     </div>
@@ -553,7 +519,7 @@
       <h2 class="title is-3 section-title">BibTeX</h2>
       <pre class="bibtex-box"><code>@inproceedings{shi2026search2adapt,
   title={Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation},
-  author={Shi, Yulong and Zhang, Wenwen and Li, Ziyi and Qi, Lin},
+  author={Yulong Shi and Wenwen Zhang and Ziyi Li and Lin Qi},
   booktitle={Proceedings of the 34th ACM International Conference on Multimedia},
   year={2026}
 }</code></pre>
