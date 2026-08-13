@@ -1,8 +1,8 @@
 ---
 layout: default
-title: About
-permalink: /
-lang: en
+title: 关于
+permalink: /zh/
+lang: zh-CN
 ---
 
 <table>
@@ -10,13 +10,13 @@ lang: en
     <tr>
       <td width="670">
         <div id="toptitle">
-          <h1>Yulong Shi</h1>
+          <h1>史宇龙</h1>
         </div>
-        <h3>Master's Student</h3>
+        <h3>硕士研究生</h3>
         <p>
-          <a href="http://www.neu.edu.cn/">Northeastern University</a>, Shenyang, China<br />
+          <a href="http://www.neu.edu.cn/">东北大学</a>，辽宁沈阳<br />
           <br />
-          Email: <a href="mailto:derek_shiii@yeah.net">derek_shiii@yeah.net</a>
+          邮箱：<a href="mailto:derek_shiii@yeah.net">derek_shiii@yeah.net</a>
         </p>
         <p>
           <a href="https://github.com/derekshiii">GitHub</a> &nbsp;/&nbsp;
@@ -24,37 +24,33 @@ lang: en
           <a href="https://orcid.org/0009-0006-5466-7312">ORCID</a>
         </p>
         <p>
-          <a href="{{ '/assets/pdf/YulongShi-NortheasternUniversity.pdf' | relative_url }}">CV (English)</a> &nbsp;/&nbsp;
-          <a href="{{ '/assets/pdf/史宇龙-东北大学.pdf' | relative_url }}">简历 (中文)</a>
+          <a href="{{ '/assets/pdf/史宇龙-东北大学.pdf' | relative_url }}">简历（中文）</a> &nbsp;/&nbsp;
+          <a href="{{ '/assets/pdf/YulongShi-NortheasternUniversity.pdf' | relative_url }}">CV (English)</a>
         </p>
       </td>
-      <td><img src="{{ '/assets/img/证件照-白底.png' | relative_url }}" border="0" height="220" alt="photo" /></td>
+      <td><img src="{{ '/assets/img/证件照-白底.png' | relative_url }}" border="0" height="220" alt="史宇龙的照片" /></td>
     </tr>
   </tbody>
 </table>
 
-<h2>Biography</h2>
+<h2>个人简介</h2>
 <p>
-  I am a Master's student in Biomedical Engineering at
-  <a href="http://www.neu.edu.cn/">Northeastern University</a>, China.
-  Before that, I received my B.Eng. in Measurement and Control Technology and Instruments
-  from <a href="https://www.guet.edu.cn/">Guilin University of Electronic Technology</a> in 2024.
+  我目前在<a href="http://www.neu.edu.cn/">东北大学</a>攻读<strong>生物医学工程</strong>硕士学位，
+  2024 年本科毕业于<a href="https://www.guet.edu.cn/">桂林电子科技大学</a><strong>测控技术与仪器</strong>专业。
 </p>
 
 <p>
   <font color="red">
-    I am actively looking for a PhD position starting in Fall 2027 (27fall). If you are interested in my background, please feel free to reach out via email.
+    目前正在申请 2027 年秋季入学的博士项目（27 Fall），欢迎通过邮件与我联系。
   </font>
 </p>
 
 <p>
-  My research interests include <strong>world action models</strong>,
-  <strong>autonomous driving</strong>, <strong>medical image analysis</strong>,
-  and <strong>vision foundation models</strong> for medical applications.
-  Recently, I am also exploring multimodal medical image analysis and 3D medical vision.
+  我的研究兴趣包括<strong>世界动作模型</strong>、<strong>自动驾驶</strong>、<strong>医学影像分析</strong>，
+  以及面向医学应用的<strong>视觉基础模型</strong>。近期我也在探索多模态医学影像分析与三维医学视觉。
 </p>
 
-<h2>Publications [<a href="https://scholar.google.com/citations?user=LQtAorMAAAAJ">Google Scholar</a>]</h2>
+<h2>发表论文 [<a href="https://scholar.google.com/citations?user=LQtAorMAAAAJ">Google Scholar</a>]</h2>
 
 <ul>
 
@@ -129,8 +125,8 @@ lang: en
 
   <li>
     <a href="https://www.sciencedirect.com/science/article/abs/pii/S0169260725004341">A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation</a><br />
-    Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian. (<sup>*</sup>equal contribution)<br />
-    <em>Computer Methods and Programs in Biomedicine</em>, 2025.<br />
+    Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian。（<sup>*</sup>共同贡献）<br />
+    <em>Computer Methods and Programs in Biomedicine</em>，2025。<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>IF: 4.8, JCR Q1</b></span> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
@@ -147,67 +143,67 @@ lang: en
 
 </ul>
 
-<h2>Experience</h2>
+<h2>实习经历</h2>
 
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><a href="https://www.huawei.com/">Huawei</a>, Intelligent Automotive Solution BU, Autonomous Driving Product Line</span>
-      <span>2026 – Present</span>
+      <span><a href="https://www.huawei.com/">华为</a>，智能汽车解决方案 BU，智能驾驶产品线</span>
+      <span>2026 – 至今</span>
     </div>
     <div class="entry-row entry-subheading">
-      <span>Multimodal Foundation Model Engineer Intern</span>
-      <span>Beijing, China</span>
+      <span>多模态大模型算法实习生</span>
+      <span>北京</span>
     </div>
-    <div class="entry-description">Proposed RiskTrace-RL, a risk-aware reinforcement learning post-training framework for world action models in autonomous driving. To address the loss of decision-relevant information caused by passing highly noisy video representations to the action expert too early, I formulated the generative denoising trajectory as an MDP and developed a task-specific reward model that integrates temporal latents, handoff K/V features, action trajectories, and multidimensional safety signals. Safety-constrained WM-only policy optimization and cross-modal causal ablations were used to mitigate reward hacking, ultimately improving closed-loop NAVSIM PDMS to 91.8%.</div>
+    <div class="entry-description">提出 RiskTrace-RL，面向自动驾驶世界动作模型的风险感知强化学习后训练框架。针对高噪声视频表征过早传递至动作专家造成的决策信息缺失，将生成去噪轨迹建模为 MDP，并融合时序 latent、handoff K/V、动作轨迹及多维安全指标构建任务专用奖励模型。通过安全约束的 WM-only 策略优化与跨模态因果消融抑制奖励劫持，最终将 NAVSIM 闭环 PDMS 提升至 91.8%。</div>
   </li>
 </ul>
 
-<h2>Honors &amp; Awards</h2>
+<h2>荣誉与奖励</h2>
 
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><b>National Scholarship</b></span>
+      <span><b>国家奖学金</b></span>
       <span>2025</span>
     </div>
   </li>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><b>First Prize</b>, 10th National Biomedical Engineering Innovation Design Competition</span>
+      <span><b>第十届全国大学生生物医学工程创新设计竞赛一等奖</b></span>
       <span>2025</span>
     </div>
-    <div>Project: SFLocNet - Source-Free Anatomical Landmark Localization Framework.</div>
+    <div>参赛项目：SFLocNet——无源解剖标志点定位框架</div>
   </li>
 </ul>
 
-<h2>Education</h2>
+<h2>教育经历</h2>
 
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span>M.S. in Biomedical Engineering</span>
-      <span>2024 – Present</span>
+      <span><strong>生物医学工程硕士</strong></span>
+      <span>2024 – 至今</span>
     </div>
     <div class="entry-row entry-subheading">
-      <span><a href="http://www.neu.edu.cn/">Northeastern University</a></span>
-      <span>Shenyang, China</span>
+      <span><a href="http://www.neu.edu.cn/">东北大学</a></span>
+      <span>辽宁沈阳</span>
     </div>
   </li>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span>B.Eng. in Measurement and Control Technology and Instruments</span>
+      <span><strong>测控技术与仪器工学学士</strong></span>
       <span>2020 – 2024</span>
     </div>
     <div class="entry-row entry-subheading">
-      <span><a href="https://www.guet.edu.cn/">Guilin University of Electronic Technology</a></span>
-      <span>Guilin, China</span>
+      <span><a href="https://www.guet.edu.cn/">桂林电子科技大学</a></span>
+      <span>广西桂林</span>
     </div>
   </li>
 </ul>
 
 <div id="footer">
   <div id="foottext">
-    &copy; Yulong Shi | Last updated: August 2026
+    &copy; 史宇龙 | 最后更新：2026 年 8 月
   </div>
 </div>

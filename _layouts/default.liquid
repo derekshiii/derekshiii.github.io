@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ page.lang | default: 'en' }}" lang="{{ page.lang | default: 'en' }}">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +10,28 @@
   <meta property="og:description" content="{{ site.description }}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}" />
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ '/' | relative_url }}" />
+  <link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ '/zh/' | relative_url }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' | relative_url }}" />
   <link rel="shortcut icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/jemdoc.css' | relative_url }}" type="text/css" />
   <title>{{ site.first_name }} {{ site.last_name }}</title>
 </head>
 <body>
 <div id="layout-content" style="margin-top:25px">
+  {% if page.lang == 'zh-CN' %}
+    <nav class="language-switcher" aria-label="语言切换">
+      <span aria-current="page">中文</span>
+      <span class="language-divider" aria-hidden="true">|</span>
+      <a href="{{ '/' | relative_url }}" lang="en" hreflang="en">English</a>
+    </nav>
+  {% else %}
+    <nav class="language-switcher" aria-label="Language switcher">
+      <span aria-current="page">English</span>
+      <span class="language-divider" aria-hidden="true">|</span>
+      <a href="{{ '/zh/' | relative_url }}" lang="zh-CN" hreflang="zh-CN">中文</a>
+    </nav>
+  {% endif %}
   {{ content }}
 </div>
 </body>
