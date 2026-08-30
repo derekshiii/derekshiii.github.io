@@ -152,14 +152,10 @@ lang: en
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><a href="https://www.huawei.com/">Huawei</a>, Intelligent Automotive Solution BU, Autonomous Driving Product Line</span>
-      <span>2026 – Present</span>
+      <span><strong><a href="https://www.huawei.com/">Huawei Intelligent Automotive Solution BU</a></strong> &nbsp; <em>Multimodal Foundation Model Engineer</em></span>
+      <span>06/2026 – 09/2026</span>
     </div>
-    <div class="entry-row entry-subheading">
-      <span>Multimodal Foundation Model Engineer Intern</span>
-      <span>Beijing, China</span>
-    </div>
-    <div class="entry-description">Proposed RiskTrace-RL, a risk-aware reinforcement learning post-training framework for world action models in autonomous driving. To address the loss of decision-relevant information caused by passing highly noisy video representations to the action expert too early, I formulated the generative denoising trajectory as an MDP and developed a task-specific reward model that integrates temporal latents, handoff K/V features, action trajectories, and multidimensional safety signals. Safety-constrained WM-only policy optimization and cross-modal causal ablations were used to mitigate reward hacking, ultimately improving closed-loop NAVSIM PDMS to 91.8%.</div>
+    <div class="entry-description">Proposed ReinWAM, a reinforcement post-training framework for World Action Models that optimizes the World Model, Action Expert, and their information coupling while keeping the pretrained backbone frozen. Proposed a factorized credit assignment scheme for World Action coupling to avoid indiscriminately propagating global rewards across heterogeneous modules, mitigating safety degradation caused by shared credit assignment. Achieved 91.1% PDMS on NAVSIM with consistent improvements in EP.</div>
   </li>
 </ul>
 

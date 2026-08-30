@@ -148,14 +148,10 @@ lang: zh-CN
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><a href="https://www.huawei.com/">华为</a>，智能汽车解决方案 BU，智能驾驶产品线</span>
-      <span>2026 – 至今</span>
+      <span><strong><a href="https://www.huawei.com/">华为</a></strong>，智能汽车解决方案 BU（引望）- 智能驾驶产品部，<em>AI 模型工程师</em></span>
+      <span>2026.06 – 2026.09</span>
     </div>
-    <div class="entry-row entry-subheading">
-      <span>多模态大模型算法实习生</span>
-      <span>北京</span>
-    </div>
-    <div class="entry-description">提出 RiskTrace-RL，面向自动驾驶世界动作模型的风险感知强化学习后训练框架。针对高噪声视频表征过早传递至动作专家造成的决策信息缺失，将生成去噪轨迹建模为 MDP，并融合时序 latent、handoff K/V、动作轨迹及多维安全指标构建任务专用奖励模型。通过安全约束的 WM-only 策略优化与跨模态因果消融抑制奖励劫持，最终将 NAVSIM 闭环 PDMS 提升至 91.8%。</div>
+    <div class="entry-description">设计世界动作模型强化后训练框架 ReinWAM，在冻结预训练主干的基础上，分别优化 World Model、Action Expert 及二者的信息交互，并提出面向 World–Action 耦合的因子化 Credit 分配方法，避免将全局 Reward 无差别地回传至不同模块。本方法能够减少共享 Credit 引起的安全退化，并在 NavSim 上达到 91.1% PDMS 以及稳定的 EP 改善。</div>
   </li>
 </ul>
 
