@@ -1,6 +1,8 @@
 ---
 layout: default
 title: A3-DualUD
+meta_title: A3-DualUD | Yulong Shi
+description: "A3-DualUD: source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation (Computer Methods and Programs in Biomedicine, 2025)."
 permalink: /projects/a3dualud/
 ---
 
@@ -24,7 +26,7 @@ Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang
 <h2>Resources</h2>
 <ul>
   <li><a href="https://www.sciencedirect.com/science/article/abs/pii/S0169260725004341">Paper (ScienceDirect)</a></li>
-  <li><a href="https://github.com/derekshiii">Code</a> (coming soon)</li>
+  <li><a href="https://github.com/derekshiii/A3-DualUD">Code (GitHub)</a></li>
 </ul>
 
 <h2>BibTeX</h2>
@@ -32,6 +34,7 @@ Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang
   title={A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation},
   author={Zhou, Jie and Shi, Yulong and Qi, Lin and Jiang, Xue and Qi, Shouliang and Qian, Wei},
   journal={Computer Methods and Programs in Biomedicine},
+  volume={271},
   pages={109017},
   year={2025},
   publisher={Elsevier}
@@ -39,6 +42,6 @@ Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang
 
 <div id="footer">
   <div id="foottext">
-    &copy; Yulong Shi | Last updated: July 2026
+    &copy; Yulong Shi | Last updated: October 2026
   </div>
 </div>

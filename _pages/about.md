@@ -1,6 +1,8 @@
 ---
 layout: default
 title: About
+meta_title: Yulong Shi
+description: Yulong Shi, Master's student in Biomedical Engineering at Northeastern University. Research on source-free domain adaptation for medical image segmentation, vision foundation models, agentic decision making, and world action models. Applying for PhD programs starting Fall 2027.
 permalink: /
 lang: en
 ---
@@ -37,20 +39,19 @@ lang: en
 <p>
   I am a Master's student in Biomedical Engineering at
   <a href="http://www.neu.edu.cn/">Northeastern University</a>, China.
-  Before that, I received my B.Eng. in Measurement and Control Technology and Instruments
+  Before that, I received my B.Eng. in Measurement and Control Technology and Instrument
   from <a href="https://www.guet.edu.cn/">Guilin University of Electronic Technology</a> in 2024.
 </p>
 
 <p>
   <font color="red">
-    I am actively looking for a PhD position starting in Fall 2027 (27fall). If you are interested in my background, please feel free to reach out via email.
+    I am actively looking for a PhD position starting in Fall 2027. If you are interested in my background, please feel free to reach out via email.
   </font>
 </p>
 
 <p>
-  My research interests include <strong>world action models</strong>,
-  <strong>autonomous driving</strong>, <strong>medical image analysis</strong>,
-  and <strong>vision foundation models</strong> for medical applications.
+  My research interests include <strong>world action models</strong>, <strong>autonomous driving</strong>,
+  <strong>medical image analysis</strong>, and <strong>vision foundation models</strong> for medical applications.
   Recently, I am also exploring multimodal medical image analysis and 3D medical vision.
 </p>
 
@@ -59,10 +60,29 @@ lang: en
 <ul>
 
   <li>
-    Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation<br />
+    <a href="https://doi.org/10.1109/TMI.2026.3744091">PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation</a><br />
+    <strong>Yulong Shi</strong>, Shijie Li, Ziyi Li, Lin Qi (corresponding author), Shouliang Qi, Ting Liu, Wei Qian.<br />
+    <em>IEEE Transactions on Medical Imaging</em> (IEEE TMI), 2026.<br />
+    <div style="margin-top:2px;"><span style="color:red;"><b>IF: 13.0, JCR Q1</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/PARDA-SFUDA-Agent">Code</a></div>
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@article{shi2026parda,
+  title={PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation},
+  author={Shi, Yulong and Li, Shijie and Li, Ziyi and Qi, Lin and Qi, Shouliang and Liu, Ting and Qian, Wei},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2026},
+  doi={10.1109/TMI.2026.3744091}
+}</pre>
+    </details>
+  </li>
+
+  <li>
+    <a href="{{ '/search2adapt/' | relative_url }}">Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation</a><br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
     <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/Search2Adapt">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{shi2026search2adapt,
@@ -75,7 +95,7 @@ lang: en
   </li>
 
   <li>
-    AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection<br />
+    <a href="https://papers.miccai.org/miccai-2026/0082-Paper0716.html">AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection</a><br />
     Ziyi Li, Jiarui Li, <strong>Yulong Shi</strong>, Xue Jiang, Shouliang Qi, Ting Liu, Lin Qi, Wei Qian.<br />
     <em>29th International Conference on Medical Image Computing and Computer Assisted Intervention</em> (<b>MICCAI</b>), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-B, CORE A</b></span> &nbsp;
@@ -95,6 +115,7 @@ lang: en
     <b>Yulong Shi</b>, Shijie Li, Ziyi Li, Lin Qi.<br />
     <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), June 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/Tell2Adapt">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@InProceedings{Shi_2026_CVPR,
@@ -113,6 +134,8 @@ lang: en
     <strong>Yulong Shi</strong>, Jiapeng Li, Lin Qi.<br />
     <em>The 36th British Machine Vision Conference</em> (<b>BMVC</b>), 2025.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-C, CORE A</b></span> &nbsp;
+    <a href="https://arxiv.org/abs/2511.17958">arXiv</a> &nbsp;
+    <a href="https://github.com/derekshiii/HEAL">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@misc{shi2025heallearningfreesourcefree,
@@ -132,12 +155,14 @@ lang: en
     Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian. (<sup>*</sup>equal contribution)<br />
     <em>Computer Methods and Programs in Biomedicine</em>, 2025.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>IF: 4.8, JCR Q1</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/A3-DualUD">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@article{zhou2025a3,
   title={A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation},
   author={Zhou, Jie and Shi, Yulong and Qi, Lin and Jiang, Xue and Qi, Shouliang and Qian, Wei},
   journal={Computer Methods and Programs in Biomedicine},
+  volume={271},
   pages={109017},
   year={2025},
   publisher={Elsevier}
@@ -155,7 +180,8 @@ lang: en
       <span><strong><a href="https://www.huawei.com/">Huawei Intelligent Automotive Solution BU</a></strong> &nbsp; <em>Multimodal Foundation Model Engineer</em></span>
       <span>06/2026 – 09/2026</span>
     </div>
-    <div class="entry-description">Proposed ReinWAM, a reinforcement post-training framework for World Action Models that optimizes the World Model, Action Expert, and their information coupling while keeping the pretrained backbone frozen. Proposed a factorized credit assignment scheme for World Action coupling to avoid indiscriminately propagating global rewards across heterogeneous modules, mitigating safety degradation caused by shared credit assignment. Achieved 91.1% PDMS on NAVSIM with consistent improvements in EP.</div>
+    <div class="entry-description"><strong>ReinWAM.</strong> Proposed a reinforcement post-training framework for World Action Models that optimizes the World Model, Action Expert, and their information coupling while keeping the pretrained backbone frozen. Introduced factorized credit assignment for World-Action coupling to avoid indiscriminate propagation of global rewards, mitigating safety degradation from shared credit. Achieved 91.1% PDMS on NAVSIM with consistent EP improvements.</div>
+    <div class="entry-description"><strong>JEV-Drive.</strong> Designed a fast end-to-end planning framework combining single-step semantic decision-making with conditional diffusion. Built a 36-class orthogonal driving-intent codebook on Qwen3.5-0.8B; independent Byte Token mapping enables answer-position logit-slice readout after a single prefill, avoiding autoregressive decoding latency. Injected Qwen instructions into DiffusionDrive through Cross-Attention KV, FiLM feature modulation, and classification-score bias to guide 20 anchors through two DDIM denoising steps and trajectory selection. Achieved 90.5 ms inference and 88.7% PDMS on NAVSIM using a single front-view input.</div>
   </li>
 </ul>
 
@@ -192,7 +218,7 @@ lang: en
   </li>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span>B.Eng. in Measurement and Control Technology and Instruments</span>
+      <span>B.Eng. in Measurement and Control Technology and Instrument</span>
       <span>2020 – 2024</span>
     </div>
     <div class="entry-row entry-subheading">
@@ -204,6 +230,6 @@ lang: en
 
 <div id="footer">
   <div id="foottext">
-    &copy; Yulong Shi | Last updated: August 2026
+    &copy; Yulong Shi | Last updated: October 2026
   </div>
 </div>

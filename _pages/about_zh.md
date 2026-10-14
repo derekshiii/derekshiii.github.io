@@ -1,8 +1,11 @@
 ---
 layout: default
 title: 关于
+meta_title: 史宇龙
+description: 史宇龙，东北大学生物医学工程硕士。研究方向为医学影像分割中的无源无监督域适应、视觉基础模型、智能体决策与世界动作模型。正在申请 2027 年秋季入学的博士项目。
 permalink: /zh/
 lang: zh-CN
+published: false
 ---
 
 <table>
@@ -35,8 +38,8 @@ lang: zh-CN
 
 <h2>个人简介</h2>
 <p>
-  我目前在<a href="http://www.neu.edu.cn/">东北大学</a>攻读<strong>生物医学工程</strong>硕士学位，
-  2024 年本科毕业于<a href="https://www.guet.edu.cn/">桂林电子科技大学</a><strong>测控技术与仪器</strong>专业。
+  我目前在<a href="http://www.neu.edu.cn/">东北大学</a>攻读生物医学工程硕士学位，
+  2024 年本科毕业于<a href="https://www.guet.edu.cn/">桂林电子科技大学</a>测控技术与仪器专业。
 </p>
 
 <p>
@@ -46,8 +49,7 @@ lang: zh-CN
 </p>
 
 <p>
-  我的研究兴趣包括<strong>世界动作模型</strong>、<strong>自动驾驶</strong>、<strong>医学影像分析</strong>，
-  以及面向医学应用的<strong>视觉基础模型</strong>。近期我也在探索多模态医学影像分析与三维医学视觉。
+  我主要研究医学影像分割中的域适应，尤其关注在无法访问源数据时，如何将预训练模型适配到新的临床场景。我也关注视觉基础模型、智能体学习与自动驾驶，并探索三维医学视觉和多模态医学影像分析。
 </p>
 
 <h2>发表论文 [<a href="https://scholar.google.com/citations?user=LQtAorMAAAAJ">Google Scholar</a>]</h2>
@@ -55,10 +57,29 @@ lang: zh-CN
 <ul>
 
   <li>
-    Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation<br />
+    <a href="https://doi.org/10.1109/TMI.2026.3744091">PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation</a><br />
+    <strong>Yulong Shi</strong>, Shijie Li, Ziyi Li, Lin Qi（通讯作者）, Shouliang Qi, Ting Liu, Wei Qian.<br />
+    <em>IEEE Transactions on Medical Imaging</em>（IEEE TMI），2026。<br />
+    <div style="margin-top:2px;"><span style="color:red;"><b>IF: 13.0, JCR Q1</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/PARDA-SFUDA-Agent">代码</a></div>
+    <details style="display:inline; cursor:pointer; color:#888;">
+      <summary>Bib</summary>
+      <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@article{shi2026parda,
+  title={PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation},
+  author={Shi, Yulong and Li, Shijie and Li, Ziyi and Qi, Lin and Qi, Shouliang and Liu, Ting and Qian, Wei},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2026},
+  doi={10.1109/TMI.2026.3744091}
+}</pre>
+    </details>
+  </li>
+
+  <li>
+    <a href="{{ '/search2adapt/' | relative_url }}">Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation</a><br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
     <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/Search2Adapt">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@inproceedings{shi2026search2adapt,
@@ -71,7 +92,7 @@ lang: zh-CN
   </li>
 
   <li>
-    AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection<br />
+    <a href="https://papers.miccai.org/miccai-2026/0082-Paper0716.html">AutoLand: A Data-Efficient Automated Agentic Workflow for Universal Medical Landmark Detection</a><br />
     Ziyi Li, Jiarui Li, <strong>Yulong Shi</strong>, Xue Jiang, Shouliang Qi, Ting Liu, Lin Qi, Wei Qian.<br />
     <em>29th International Conference on Medical Image Computing and Computer Assisted Intervention</em> (<b>MICCAI</b>), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-B, CORE A</b></span> &nbsp;
@@ -91,6 +112,7 @@ lang: zh-CN
     <b>Yulong Shi</b>, Shijie Li, Ziyi Li, Lin Qi.<br />
     <em>IEEE/CVF Conference on Computer Vision and Pattern Recognition</em> (<b>CVPR</b>), June 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/Tell2Adapt">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@InProceedings{Shi_2026_CVPR,
@@ -109,6 +131,8 @@ lang: zh-CN
     <strong>Yulong Shi</strong>, Jiapeng Li, Lin Qi.<br />
     <em>The 36th British Machine Vision Conference</em> (<b>BMVC</b>), 2025.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-C, CORE A</b></span> &nbsp;
+    <a href="https://arxiv.org/abs/2511.17958">arXiv</a> &nbsp;
+    <a href="https://github.com/derekshiii/HEAL">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@misc{shi2025heallearningfreesourcefree,
@@ -125,15 +149,17 @@ lang: zh-CN
 
   <li>
     <a href="https://www.sciencedirect.com/science/article/abs/pii/S0169260725004341">A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation</a><br />
-    Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian。（<sup>*</sup>共同贡献）<br />
+    Jie Zhou<sup>*</sup>, <strong>Yulong Shi</strong><sup>*</sup>, Lin Qi, Xue Jiang, Shouliang Qi, Wei Qian。（<sup>*</sup>共同一作）<br />
     <em>Computer Methods and Programs in Biomedicine</em>，2025。<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>IF: 4.8, JCR Q1</b></span> &nbsp;
+    <a href="https://github.com/derekshiii/A3-DualUD">Code</a> &nbsp;
     <details style="display:inline; cursor:pointer; color:#888;">
       <summary>Bib</summary>
       <pre style="display:block; margin:5px 0; padding:8px; background:#f6f6f6; font-size:0.85em; overflow-x:auto;">@article{zhou2025a3,
   title={A3-DualUD: Source-free unsupervised domain adaptation via anatomical anchor alignment and dual-path uncertainty denoising for cross-modality medical image segmentation},
   author={Zhou, Jie and Shi, Yulong and Qi, Lin and Jiang, Xue and Qi, Shouliang and Qian, Wei},
   journal={Computer Methods and Programs in Biomedicine},
+  volume={271},
   pages={109017},
   year={2025},
   publisher={Elsevier}
@@ -151,7 +177,8 @@ lang: zh-CN
       <span><strong><a href="https://www.huawei.com/">华为</a></strong>，智能汽车解决方案 BU（引望）- 智能驾驶产品部，<em>AI 模型工程师</em></span>
       <span>2026.06 – 2026.09</span>
     </div>
-    <div class="entry-description">设计世界动作模型强化后训练框架 ReinWAM，在冻结预训练主干的基础上，分别优化 World Model、Action Expert 及二者的信息交互，并提出面向 World–Action 耦合的因子化 Credit 分配方法，避免将全局 Reward 无差别地回传至不同模块。本方法能够减少共享 Credit 引起的安全退化，并在 NavSim 上达到 91.1% PDMS 以及稳定的 EP 改善。</div>
+    <div class="entry-description"><strong>ReinWAM。</strong>设计世界动作模型强化后训练框架，在冻结预训练主干的基础上，分别优化 World Model、Action Expert 及二者的信息交互，并提出面向 World-Action 耦合的因子化 Credit 分配方法，避免将全局 Reward 无差别地回传至不同模块。本方法能够减少共享 Credit 引起的安全退化，并在 NAVSIM 上达到 91.1% PDMS 以及稳定的 EP 改善。</div>
+    <div class="entry-description"><strong>JEV-Drive。</strong>设计结合单步语义决策与条件扩散的快速端到端规划框架。基于 Qwen3.5-0.8B 构建 36 类正交驾驶意图表，利用独立 Byte Token 映射实现单次 Prefill 答案位 Logits 切片读出，规避自回归解码延迟。而后将 Qwen 指令通过 Cross-Attention KV、FiLM 特征调制与分类打分偏置三条路径注入 DiffusionDrive，引导 20 个锚点完成 2 步 DDIM 去噪与最优轨迹筛选。该方法在实现 90.5 ms 实时推理的同时，仅凭单前视输入在 NAVSIM 上达到 88.7% PDMS。</div>
   </li>
 </ul>
 
@@ -178,7 +205,7 @@ lang: zh-CN
 <ul>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><strong>生物医学工程硕士</strong></span>
+      <span>生物医学工程硕士</span>
       <span>2024 – 至今</span>
     </div>
     <div class="entry-row entry-subheading">
@@ -188,7 +215,7 @@ lang: zh-CN
   </li>
   <li class="timeline-entry">
     <div class="entry-row entry-heading">
-      <span><strong>测控技术与仪器工学学士</strong></span>
+      <span>测控技术与仪器工学学士</span>
       <span>2020 – 2024</span>
     </div>
     <div class="entry-row entry-subheading">
@@ -200,6 +227,6 @@ lang: zh-CN
 
 <div id="footer">
   <div id="foottext">
-    &copy; 史宇龙 | 最后更新：2026 年 8 月
+    &copy; 史宇龙 | 最后更新：2026 年 10 月
   </div>
 </div>

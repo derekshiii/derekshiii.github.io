@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Tell2Adapt
+meta_title: Tell2Adapt | Yulong Shi
+description: "Tell2Adapt: A Unified Framework for Source Free Unsupervised Domain Adaptation via Vision Foundation Model (CVPR 2026)."
 permalink: /projects/tell2adapt/
 ---
 
@@ -8,7 +10,7 @@ permalink: /projects/tell2adapt/
 
 <p>
 <b>Yulong Shi</b>, Shijie Li, Ziyi Li, Lin Qi.<br />
-<em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2026. <span style="color:red;"><b>CCF-A, CORE A*</b></span>
+<em>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2026. <span style="color:red;"><b>CCF-A, CORE A*</b></span>
 </p>
 
 <h2>Abstract</h2>
@@ -24,7 +26,7 @@ permalink: /projects/tell2adapt/
 <h2>Resources</h2>
 <ul>
   <li><a href="https://openaccess.thecvf.com/content/CVPR2026/papers/Shi_Tell2Adapt_A_Unified_Framework_for_Source_Free_Unsupervised_Domain_Adaptation_CVPR_2026_paper.pdf">Paper (PDF)</a></li>
-  <li><a href="https://github.com/derekshiii">Code</a> (coming soon)</li>
+  <li><a href="https://github.com/derekshiii/Tell2Adapt">Code (GitHub)</a></li>
 </ul>
 
 <h2>BibTeX</h2>
@@ -39,6 +41,6 @@ permalink: /projects/tell2adapt/
 
 <div id="footer">
   <div id="foottext">
-    &copy; Yulong Shi | Last updated: July 2026
+    &copy; Yulong Shi | Last updated: October 2026
   </div>
 </div>

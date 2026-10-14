@@ -3,33 +3,49 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="{{ site.keywords }}" />
-  <meta name="description" content="{{ site.description }}" />
+  <meta name="keywords" content="{{ page.keywords | default: site.keywords }}" />
+  <meta name="description" content="{{ page.description | default: site.description }}" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="{{ site.first_name }} {{ site.last_name }}" />
-  <meta property="og:description" content="{{ site.description }}" />
+  <link rel="canonical" href="{{ site.url }}{{ page.canonical | default: page.url }}" />
+  <meta property="og:title" content="{{ page.meta_title | default: page.title | default: site.description }}" />
+  <meta property="og:description" content="{{ page.description | default: site.description }}" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.canonical | default: page.url }}" />
+  {% if page.i18n %}
   <link rel="alternate" hreflang="en" href="{{ site.url }}{{ '/' | relative_url }}" />
   <link rel="alternate" hreflang="zh-CN" href="{{ site.url }}{{ '/zh/' | relative_url }}" />
   <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' | relative_url }}" />
+  {% endif %}
+  {% if page.redirect_to %}
+  <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}" />
+  {% endif %}
   <link rel="shortcut icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" />
   <link rel="stylesheet" href="{{ '/assets/css/jemdoc.css' | relative_url }}" type="text/css" />
-  <title>{{ site.first_name }} {{ site.last_name }}</title>
+  <title>{{ page.meta_title | default: page.title | default: site.description }}</title>
 </head>
 <body>
 <div id="layout-content" style="margin-top:25px">
-  {% if page.lang == 'zh-CN' %}
+  {% if page.i18n %}
+    {% if page.lang == 'zh-CN' %}
     <nav class="language-switcher" aria-label="语言切换">
       <span aria-current="page">中文</span>
       <span class="language-divider" aria-hidden="true">|</span>
       <a href="{{ '/' | relative_url }}" lang="en" hreflang="en">English</a>
     </nav>
-  {% else %}
+    {% else %}
     <nav class="language-switcher" aria-label="Language switcher">
       <span aria-current="page">English</span>
       <span class="language-divider" aria-hidden="true">|</span>
       <a href="{{ '/zh/' | relative_url }}" lang="zh-CN" hreflang="zh-CN">中文</a>
+    </nav>
+    {% endif %}
+  {% else %}
+    <nav class="language-switcher" aria-label="Site navigation">
+      {% if page.lang == 'zh-CN' %}
+      <a href="{{ '/zh/' | relative_url }}" lang="zh-CN" hreflang="zh-CN">主页</a>
+      {% else %}
+      <a href="{{ '/' | relative_url }}" lang="en" hreflang="en">Home</a>
+      {% endif %}
     </nav>
   {% endif %}
   {{ content }}

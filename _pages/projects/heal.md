@@ -1,6 +1,8 @@
 ---
 layout: default
 title: HEAL
+meta_title: HEAL | Yulong Shi
+description: "HEAL: Learning-Free Source Free Unsupervised Domain Adaptation for Cross-Modality Medical Image Segmentation (BMVC 2025)."
 permalink: /projects/heal/
 ---
 
@@ -25,7 +27,7 @@ permalink: /projects/heal/
 <ul>
   <li><a href="https://bmva-archive.org.uk/bmvc/2025/assets/papers/Paper_943/paper.pdf">Paper (PDF)</a></li>
   <li><a href="https://arxiv.org/abs/2511.17958">arXiv</a></li>
-  <li><a href="https://github.com/derekshiii">Code</a> (coming soon)</li>
+  <li><a href="https://github.com/derekshiii/HEAL">Code (GitHub)</a></li>
 </ul>
 
 <h2>BibTeX</h2>
@@ -41,6 +43,6 @@ permalink: /projects/heal/
 
 <div id="footer">
   <div id="foottext">
-    &copy; Yulong Shi | Last updated: July 2026
+    &copy; Yulong Shi | Last updated: October 2026
   </div>
 </div>

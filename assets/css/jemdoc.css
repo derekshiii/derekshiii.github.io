@@ -70,50 +70,6 @@ body {
   }
 }
 
-@media screen and (max-width: 640px) {
-  body {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 16px 14px 24px;
-  }
-
-  #layout-content {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .language-switcher {
-    top: -0.7em;
-    right: 0;
-  }
-
-  #toptitle {
-    padding-right: 7.5em;
-  }
-
-  table,
-  tbody,
-  tr,
-  td {
-    display: block;
-    width: 100% !important;
-  }
-
-  table td:last-child {
-    margin-top: 1em;
-  }
-
-  table img {
-    height: 180px;
-  }
-
-  .entry-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 0.75em;
-  }
-
-}
-
 #layout-content h1:first-child,
 #layout-content h2:first-child,
 #layout-content h3:first-child {
@@ -230,6 +186,52 @@ li {
 
 p + ul, p + ol {
   margin-top: -0.5em;
+}
+
+/* Mobile layout: keep this block after the generic .entry-* rules above,
+   so the tighter mobile spacing is not overridden by them. */
+@media screen and (max-width: 640px) {
+  body {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 16px 14px 24px;
+  }
+
+  #layout-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .language-switcher {
+    top: -0.7em;
+    right: 0;
+  }
+
+  #toptitle {
+    padding-right: 7.5em;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100% !important;
+  }
+
+  table td:last-child {
+    margin-top: 1em;
+  }
+
+  table img {
+    height: 180px;
+  }
+
+  .entry-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 0.75em;
+  }
+
 }
 
 img {

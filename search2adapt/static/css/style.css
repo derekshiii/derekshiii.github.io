@@ -127,6 +127,7 @@ body {
   text-align: center;
   font-size: 1.1rem;
   border-left: 4px solid #667eea;
+  overflow-x: auto;
 }
 
 /* Tables */
@@ -196,5 +197,14 @@ body {
 
   .highlight-cards .column {
     margin-bottom: 1rem;
+  }
+}
+
+/* Let long venue tags wrap on small screens */
+@media screen and (max-width: 768px) {
+  .publication-venue .tag {
+    white-space: normal;
+    height: auto;
+    line-height: 1.4;
   }
 }
