@@ -60,7 +60,7 @@ lang: en
 <ul>
 
   <li>
-    <a href="https://doi.org/10.1109/TMI.2026.3744091">PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation</a><br />
+    <a href="https://ieeexplore.ieee.org/document/11739724">PARDA: A Perceive-Act-Reflect-Distill Agent for Source-Free Unsupervised Domain Adaptation</a><br />
     <strong>Yulong Shi</strong>, Shijie Li, Ziyi Li, Lin Qi (corresponding author), Shouliang Qi, Ting Liu, Wei Qian.<br />
     <em>IEEE Transactions on Medical Imaging</em> (IEEE TMI), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>IF: 13.0, JCR Q1</b></span> &nbsp;
@@ -78,7 +78,7 @@ lang: en
   </li>
 
   <li>
-    <a href="{{ '/search2adapt/' | relative_url }}">Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation</a><br />
+    <a href="https://dl.acm.org/doi/10.1145/3767308.3835160">Search2Adapt: Multi-Agent Collaborative Tree Search for Source-Free Unsupervised Domain Adaptation</a><br />
     <strong>Yulong Shi</strong>, Wenwen Zhang, Ziyi Li, Lin Qi.<br />
     <em>The 34th ACM International Conference on Multimedia</em> (<b>ACM MM</b>), 2026.<br />
     <div style="margin-top:2px;"><span style="color:red;"><b>CCF-A, CORE A*</b></span> &nbsp;
